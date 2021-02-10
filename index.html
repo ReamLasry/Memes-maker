@@ -43,17 +43,43 @@
             <section class="image-content flex space-around"></section>
         </div>
         <!-- MEMEPAGE -->
-        <div class="memes">
-            <canvas class="canvas-container"></canvas>
-            <div class="meme-content">
-                <input type="text" placeholder="Text line">
+        <div class="memes flex">
+            <div class="canvas-container">
+                <canvas class="canvas-content"></canvas>
+            </div>
+
+            <div class="meme-content flex column space-between">
+                <section class="meme-text">
+                    <input type="text" placeholder="Text line">
+                    <button class="switch-line"></button>
+                    <button class="add-text-line"></button>
+                    <button class="delete-text-line"></button>
+                </section>
+
+                <section class="meme-design">
+                    <button class="font-size-up"></button>
+                    <button class="font-size-down"></button>
+                    <button class="line-to-left"></button>
+                    <button class="line-to-center"></button>
+                    <button class="line-to-right"></button>
+
+                    <select name="font" id="font" onchange="chaneFont()">
+                        <option value="impact">Impact</option>
+                    </select>
+                    <button class="stroke-color"></button>
+                    <button class="font-color"></button>
+                </section>
+
+                <section class="add-sticker">
+                    <div>STICKER</div>
+                </section>
 
             </div>
         </div>
     </main>
 
     <!-- FOOTER-CONTENT -->
-    <footer class="main-footer">
+    <footer class="main-footer flex">
         <div class="main-footer-content main-container">
             <small> &#169;2021 by - Ream Lasry.</small>
         </div>
@@ -62,7 +88,7 @@
 
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <script src="js/services/storage-services.js"></script>
-    <script src="js/services/images-service.js"></script>
+    <script src="js/services/memes-service.js"></script>
     <script src="js/main.js"></script>
 </body>
 
