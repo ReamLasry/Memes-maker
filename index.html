@@ -11,40 +11,56 @@
 <!-- <button class="menu-btn" onclick="toggleMenu()">☰</button> -->
 
 <body onload="init()">
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- HEADER-CONTENT -->
     <header class="main-header">
-        <div class="main-header-content main-container">
-            <div class="logo">Memes-Me<span>🤪</span></div>
-
-            <ul class="main-nav flex">
-                <li class="pointer"><a href="#">gallery</a></li>
-                <li class="pointer"><a href="#">memes</a></li>
-                <li class="pointer"><a href="#">about</a></li>
+        <div class="main-header-content main-container flex space-between">
+            <div class="logo">Memes Me<span>🤪</span></div>
+            <ul class="main-nav flex space-between">
+                <li class="pointer">gallery</li>
+                <li class="pointer">memes</li>
+                <li class="pointer">about</li>
             </ul>
         </div>
     </header>
 
+    <!-- MAIN_CONTENT -->
     <main class="main-content main-container">
-        <section class="search-content">
-            <input type="text" placeholder="search">
+        <!-- GALLERYPAGE -->
+        <div hidden class="gallery">
+            <section class="search-content flex space-around">
+                <input type="text" placeholder="Search keyword">
 
-            <ul class="search-keywords">
-                <li>Man</li>
-                <li>Funny</li>
-                <li>Cute</li>
-                <li>Kid</li>
-                <li>Animal</li>
-            </ul>
-        </section>
+                <ul class="search-keywords flex space-between">
+                    <li>Man</li>
+                    <li>Funny</li>
+                    <li>Cute</li>
+                    <li>Kid</li>
+                    <li>Animal</li>
+                </ul>
+            </section>
 
-        <section class="image-content"></section>
+            <section class="image-content flex space-around"></section>
+        </div>
+        <!-- MEMEPAGE -->
+        <div class="memes">
+            <canvas class="canvas-container"></canvas>
+            <div class="meme-content">
+                <input type="text" placeholder="Text line">
+
+            </div>
+        </div>
     </main>
 
+    <!-- FOOTER-CONTENT -->
     <footer class="main-footer">
         <div class="main-footer-content main-container">
             <small> &#169;2021 by - Ream Lasry.</small>
         </div>
     </footer>
 
+
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <script src="js/services/storage-services.js"></script>
     <script src="js/services/images-service.js"></script>
     <script src="js/main.js"></script>
