@@ -1,23 +1,40 @@
 'use strict';
 console.log('memes service');
+
+const TEMPMEMEKEY = 'MemeCreation';
 var ggalleryImgs;
-var gMeme;
+var meme;
 
 
 function createMeme() {
-    gMeme = {
+    meme = {
         selectedImgId: 5,
         selectedLineIdx: 0,
         lines: [{
-            txt: 'I have gases',
-            size: 20,
-            align: 'left',
-            color: 'red'
+            txt: '',
+            size: 30,
+            align: 'center',
+            fontColor: 'white',
+            strokeColor: 'black',
+            font: 'Ariel'
         }]
     };
-    return gMeme;
+    return meme
 }
 
+
+function addTextLine() {
+    let line = {
+        txt: '',
+        size: 30,
+        align: 'center',
+        fontColor: 'white',
+        strokeColor: 'black',
+        font: 'Ariel'
+    };
+    meme.lines.push(line);
+    _saveMemeCreation();
+}
 
 function imagesForDisplay() {
     let images = _createImages();
@@ -99,4 +116,8 @@ function _createImages() {
         url: 'image/18.jpg',
         keywords: ['man'],
     }]
+}
+
+function _saveMemeCreation() {
+    saveToStorage(TEMPMEMEKEY, meme);
 }

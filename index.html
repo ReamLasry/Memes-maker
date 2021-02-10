@@ -49,29 +49,37 @@
             </div>
 
             <div class="meme-content flex column space-between">
+                <input id="text-input" type="text" placeholder="Text line" onkeyup="updateMemeText()">
                 <section class="meme-text">
-                    <input type="text" placeholder="Text line">
-                    <button class="switch-line"></button>
-                    <button class="add-text-line"></button>
-                    <button class="delete-text-line"></button>
+                    <button class="switch-line">switch-line</button>
+                    <button class="add-text-line" onclick="onAddTextLine()">add-text-line</button>
+                    <button class="delete-text-line" onclick="onDeleteTextLines()">delete-text-line</button>
                 </section>
 
                 <section class="meme-design">
-                    <button class="font-size-up"></button>
-                    <button class="font-size-down"></button>
-                    <button class="line-to-left"></button>
-                    <button class="line-to-center"></button>
-                    <button class="line-to-right"></button>
+                    <button class="font-size-up" onclick="onFontSize(this)" value="+"> font-size-up</button>
+                    <button class="font-size-down" onclick="onFontSize(this)" value="-"> font-size-down</button>
+                    <button class="line-to-left" onclick="onTextAlign(this)" value="right">line-to-left</button>
+                    <button class="line-to-center" onclick="onTextAlign(this)" value="center">line-to-center</button>
+                    <button class="line-to-right" onclick="onTextAlign(this)" value="left">line-to-right</button>
 
-                    <select name="font" id="font" onchange="chaneFont()">
+                    <select name="font" id="font" onchange="onChangeFont()">
+                        <option value="font" disabled>Font</option>
+                        <option value="Ariel">Ariel</option>
                         <option value="impact">Impact</option>
                     </select>
-                    <button class="stroke-color"></button>
-                    <button class="font-color"></button>
+                    <!-- <label for=""></label> -->
+                    <input type="color" id="stroke-color" name="favcolor" value="#ff0001" onchange="onStrokeColor()">
+                    <input type="color" id="font-color" name="favcolor" value="#ff0001" onchange="onFontColor()">
                 </section>
 
                 <section class="add-sticker">
                     <div>STICKER</div>
+                </section>
+
+                <section class="meme-functions">
+                    <button class="share">share</button>
+                    <button class="download">download</button>
                 </section>
 
             </div>
