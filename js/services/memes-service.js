@@ -4,6 +4,8 @@ console.log('memes service');
 const TEMPMEMEKEY = 'MemeCreation';
 var ggalleryImgs;
 var meme;
+var gCurrLineIdx = 0;
+
 
 
 function createMeme() {
@@ -16,14 +18,25 @@ function createMeme() {
             align: 'center',
             fontColor: 'white',
             strokeColor: 'black',
-            font: 'Ariel'
+            font: 'Ariel',
+            x: 50,
+            y: 50
         }]
     };
     return meme
 }
 
 
+
+
+function imagesForDisplay() {
+    let images = _createImages();
+    let imgsForDisplay = images.map(image => image);
+    return imgsForDisplay;
+}
+
 function addTextLine() {
+    gCurrLineIdx++;
     let line = {
         txt: '',
         size: 30,
@@ -36,10 +49,61 @@ function addTextLine() {
     _saveMemeCreation();
 }
 
-function imagesForDisplay() {
-    let images = _createImages();
-    let imgsForDisplay = images.map(image => image);
-    return imgsForDisplay;
+function lineMove(elTxt) {
+    switch (elTxt) {
+        case 'line-up':
+            gMeme.lines[gCurrLineIdx].y--;
+            break;
+        case 'line-down':
+            gMeme.lines[gCurrLineIdx].y++;
+    }
+}
+
+function updateMemeText(val) {
+    gMeme.lines[gCurrLineIdx].txt = val;
+}
+
+function fontSize(val) {
+    let currLine = meme.lines[gCurrLineIdx];
+    if (currLine.size === 10 && val === '-') return;
+    val === '+' ? currLine.size++ : currLine.size--;
+}
+
+function deleteTextLines() {
+    console.log(gCurrLineIdx);
+    gCurrLineIdx = 0;
+    meme.lines[0].txt = '';
+}
+
+function textAlign(val) {
+    let currLine = meme.lines[gCurrLineIdx];
+    switch (val) {
+        case 'left':
+            currLine.align = val;
+            break;
+
+        case 'right':
+            currLine.align = val;
+            break;
+        case 'center':
+            currLine.align = val;
+            break;
+    }
+}
+
+function changeFont(val) {
+    let currLine = meme.lines[gCurrLineIdx];
+    currLine.font = val;
+}
+
+function fontColor(val) {
+    let currLine = meme.lines[gCurrLineIdx];
+    currLine.fontColor = val;
+}
+
+function strokeColor(val) {
+    let currLine = meme.lines[gCurrLineIdx];
+    currLine.strokeColor = val;
 }
 
 function _createImages() {
@@ -120,4 +184,8 @@ function _createImages() {
 
 function _saveMemeCreation() {
     saveToStorage(TEMPMEMEKEY, meme);
+}
+
+function getCurrLineIdx() {
+    return gCurrLineIdx;
 }

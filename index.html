@@ -17,9 +17,9 @@
         <div class="main-header-content main-container flex space-between">
             <div class="logo">Memes Me<span>🤪</span></div>
             <ul class="main-nav flex space-between">
-                <li class="pointer">gallery</li>
-                <li class="pointer">memes</li>
-                <li class="pointer">about</li>
+                <li class="pointer" onclick="onShowPage(this)">gallery</li>
+                <li class="pointer" onclick="onShowPage(this)">memes</li>
+                <li class="pointer" onclick="onShowPage(this)">about</li>
             </ul>
         </div>
     </header>
@@ -27,7 +27,7 @@
     <!-- MAIN_CONTENT -->
     <main class="main-content main-container">
         <!-- GALLERYPAGE -->
-        <div hidden class="gallery">
+        <div class="gallery">
             <section class="search-content flex space-around">
                 <input type="text" placeholder="Search keyword">
 
@@ -43,47 +43,53 @@
             <section class="image-content flex space-around"></section>
         </div>
         <!-- MEMEPAGE -->
-        <div class="memes flex">
-            <div class="canvas-container">
-                <canvas class="canvas-content"></canvas>
-            </div>
+        <div class="main-memes">
+            <div class="memes-container flex">
+                <div class="canvas-container">
+                    <canvas class="canvas-content"></canvas>
+                </div>
 
-            <div class="meme-content flex column space-between">
-                <input id="text-input" type="text" placeholder="Text line" onkeyup="updateMemeText()">
-                <section class="meme-text">
-                    <button class="switch-line">switch-line</button>
-                    <button class="add-text-line" onclick="onAddTextLine()">add-text-line</button>
-                    <button class="delete-text-line" onclick="onDeleteTextLines()">delete-text-line</button>
-                </section>
+                <div class="meme-content flex column space-between">
+                    <input id="text-input" type="text" placeholder="Text line" onkeyup="onUpdateMemeText()">
+                    <section class="meme-text">
+                        <button class="move-line" value="line-up" onclick="onlineMove(this)">line-up</button>
+                        <button class="move-line" value="line-down" onclick="onlineMove(this)">line-down</button>
+                        <button class="add-text-line" onclick="onAddTextLine()">add-text-line</button>
+                        <button class="delete-text-line" onclick="onDeleteTextLines()">delete-text-line</button>
+                    </section>
 
-                <section class="meme-design">
-                    <button class="font-size-up" onclick="onFontSize(this)" value="+"> font-size-up</button>
-                    <button class="font-size-down" onclick="onFontSize(this)" value="-"> font-size-down</button>
-                    <button class="line-to-left" onclick="onTextAlign(this)" value="right">line-to-left</button>
-                    <button class="line-to-center" onclick="onTextAlign(this)" value="center">line-to-center</button>
-                    <button class="line-to-right" onclick="onTextAlign(this)" value="left">line-to-right</button>
+                    <section class="meme-design">
+                        <button class="font-size-up" onclick="onFontSize(this)" value="+"> font-size-up</button>
+                        <button class="font-size-down" onclick="onFontSize(this)" value="-"> font-size-down</button>
+                        <button class="line-to-left" onclick="onTextAlign(this)" value="right">line-to-left</button>
+                        <button class="line-to-center" onclick="onTextAlign(this)" value="center">line-to-center</button>
+                        <button class="line-to-right" onclick="onTextAlign(this)" value="left">line-to-right</button>
 
-                    <select name="font" id="font" onchange="onChangeFont()">
-                        <option value="font" disabled>Font</option>
-                        <option value="Ariel">Ariel</option>
-                        <option value="impact">Impact</option>
-                    </select>
-                    <!-- <label for=""></label> -->
-                    <input type="color" id="stroke-color" name="favcolor" value="#ff0001" onchange="onStrokeColor()">
-                    <input type="color" id="font-color" name="favcolor" value="#ff0001" onchange="onFontColor()">
-                </section>
+                        <select name="font" id="font" onchange="onChangeFont()">
+                            <option value="font" disabled>Font</option>
+                            <option value="Ariel">Ariel</option>
+                            <option value="impact">Impact</option>
+                        </select>
+                        <label for="text-stroke-color">Text stroke color</label>
+                        <input type="color" id="stroke-color" name="favcolor" value="#ff0001" onchange="onStrokeColor()">
+                        <label for="font-stroke-color">Text color</label>
+                        <input type="color" id="font-color" name="favcolor" value="#ff0001" onchange="onFontColor()">
+                    </section>
 
-                <section class="add-sticker">
-                    <div>STICKER</div>
-                </section>
+                    <section class="add-sticker">
+                        <div>STICKER</div>
+                    </section>
 
-                <section class="meme-functions">
-                    <button class="share">share</button>
-                    <button class="download">download</button>
-                </section>
+                    <section class="meme-functions">
+                        <button class="share">share</button>
+                        <button class="download">download</button>
+                    </section>
 
+                </div>
             </div>
         </div>
+        <!-- ABOUT -->
+        <div class="about"></div>
     </main>
 
     <!-- FOOTER-CONTENT -->

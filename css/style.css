@@ -75,9 +75,13 @@ img {
 
 /* MEME */
 
+.main-memes {
+    display: none;
+}
+
 .canvas-container {
     width: 50%;
-    height: 80vh;
+    height: 75vh;
     padding: 10px;
 }
 
@@ -93,11 +97,18 @@ img {
 }
 
 
+/* ABOUT */
+
+.about {
+    display: none;
+}
+
+
 /* FOOTER */
 
 .main-footer {
-    position: absolute;
-    bottom: 0;
+    /* position: absolute; */
+    /* margin-top: ; */
     width: 100%;
     align-items: center;
     height: 50px;
