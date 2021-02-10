@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memes editor</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<!-- <button class="menu-btn" onclick="toggleMenu()">☰</button> -->
+
+<body onload="init()">
+    <header class="main-header">
+        <div class="main-header-content main-container">
+            <div class="logo">Memes-Me<span>🤪</span></div>
+
+            <ul class="main-nav flex">
+                <li class="pointer"><a href="#">gallery</a></li>
+                <li class="pointer"><a href="#">memes</a></li>
+                <li class="pointer"><a href="#">about</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main class="main-content main-container">
+        <section class="search-content">
+            <input type="text" placeholder="search">
+
+            <ul class="search-keywords">
+                <li>Man</li>
+                <li>Funny</li>
+                <li>Cute</li>
+                <li>Kid</li>
+                <li>Animal</li>
+            </ul>
+        </section>
+
+        <section class="image-content"></section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="main-footer-content main-container">
+            <small> &#169;2021 by - Ream Lasry.</small>
+        </div>
+    </footer>
+
+    <script src="js/services/storage-services.js"></script>
+    <script src="js/services/images-service.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
