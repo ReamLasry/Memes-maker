@@ -1,5 +1,4 @@
 'use strict';
-console.log('main check');
 
 var gImages;
 var gElCanvas;
@@ -15,7 +14,7 @@ function init() {
     gFirstLineAdd = true;
     gMeme = createMeme();
 
-    gMeme.selectedImgId;
+    // gMeme.selectedImgId;
 
     gCurrLineIdx = getCurrLineIdx();
     gImages = imagesForDisplay();
@@ -32,17 +31,8 @@ function onAddTextLine() {
 
     addTextLine();
     gCurrLineIdx = getCurrLineIdx();
-    console.log('add dom', gCurrLineIdx);
     var currLine = gMeme.lines[gCurrLineIdx];
-    console.log('currLineIs', currLine);
     drawText(currLine.txt, currLine.size, currLine.fontColor, currLine.strokeColor, currLine.align, currLine.font, gElCanvas.width / 2, currLine.y);
-    // renderCanvas();
-
-    // if (gFirstLineAdd) {
-    //     drawText(currLine.txt, currLine.size, currLine.fontColor, currLine.strokeColor, currLine.align, currLine.font, gElCanvas.width / 2, gElCanvas.height - 30);
-    //     gFirstLineAdd = !gFirstLineAdd;
-    // } else drawText(currLine.txt, currLine.size, currLine.fontColor, currLine.strokeColor, currLine.align, currLine.font, gElCanvas.width / 2, gElCanvas.height / 2);
-
 }
 // VV?
 function onUpdateMemeText() {
@@ -97,13 +87,9 @@ function onDeleteTextLines() {
     let textInput = document.getElementById('text-input');
     textInput.value = '';
 
-    console.log('delete dom b4', gCurrLineIdx);
     deleteTextLines();
     gCurrLineIdx = getCurrLineIdx();
-    console.log('delete dom after', gCurrLineIdx);
     renderCanvas();
-    // let currLine = gMeme.lines[gCurrLineIdx];
-    // drawText(currLine.txt, currLine.size, currLine.fontColor, currLine.strokeColor, currLine.align, currLine.font, gElCanvas.width / 2, currLine.y);
 }
 // VV
 function onFontSize(el) {
@@ -198,4 +184,11 @@ function onRenderPhoto(el) {
     elGalleryPage.hidden = true;
     elAboutPage.hidden = true;
     elMemesPage.hidden = false;
+}
+
+function downloadImg(elLink) {
+    let gElCanvas = document.querySelector('.canvas-content')
+
+    let imgContent = gElCanvas.toDataURL('image/jpeg');
+    elLink.href = imgContent;
 }

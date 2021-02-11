@@ -8,18 +8,16 @@
     <title>Memes editor</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
-<!-- <button class="menu-btn" onclick="toggleMenu()">☰</button> -->
 
 <body onload="init()">
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <!-- HEADER-CONTENT -->
     <header class="main-header">
         <div class="main-header-content main-container flex space-between">
             <div class="logo">Memes Me<span>🤪</span></div>
             <ul class="main-nav flex space-between">
-                <li class="gallery-page pointer" onclick="onShowPage(this)">gallery</li>
-                <li class="meme-page pointer" onclick="onShowPage(this)">memes</li>
-                <li class="about-page pointer" onclick="onShowPage(this)">about</li>
+                <li class="nav gallery-page pointer" onclick="onShowPage(this)">gallery</li>
+                <li class="nav meme-page pointer" onclick="onShowPage(this)">memes</li>
+                <li class="nav about-page pointer" onclick="onShowPage(this)">about</li>
             </ul>
         </div>
     </header>
@@ -104,9 +102,13 @@
                     </section>
 
                     <section class="meme-functions">
-                        <button class="back" onclick="onShowPage(this)">Back</button>
-                        <button class="share">share</button>
-                        <button class="download">download</button>
+                        <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
+                            <input name="img" id="imgData" type="hidden" />
+                            <button class="share" type="submit">share</button>
+                            <a href="#" onclick="downloadImg(this)" download="my-img.jpg">
+                                <button class="download">download</button>
+                            </a>
+                        </form>
                     </section>
 
                 </div>
@@ -125,8 +127,7 @@
         </div>
     </footer>
 
-
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <script src="js/services/upload-service.js"></script>
     <script src="js/services/storage-services.js"></script>
     <script src="js/services/memes-service.js"></script>
     <script src="js/main.js"></script>
