@@ -15,7 +15,7 @@
 body {
     font-family: 'impact';
     margin: 0;
-    background-color: lightcoral;
+    background-color: rgb(151, 151, 151);
 }
 
 li {
@@ -46,6 +46,7 @@ img {
 .main-header-content {
     align-items: center;
     color: white;
+    font-size: 2rem;
 }
 
 .main-nav li {
@@ -60,12 +61,22 @@ img {
 
 /* GALLERY */
 
+.gallery {
+    background-color: silver;
+    border-radius: 6%;
+    padding-top: 0.5px;
+}
+
 .search-content {
     margin: 20px 0px 20px;
 }
 
 .image-content {
     flex-wrap: wrap;
+}
+
+.image-content img {
+    cursor: pointer;
 }
 
 .main-nav li {
@@ -75,8 +86,9 @@ img {
 
 /* MEME */
 
-.main-memes {
-    display: none;
+.memes-container {
+    border-radius: 3%;
+    background-color: silver;
 }
 
 .canvas-container {
@@ -96,11 +108,25 @@ img {
     padding-left: 5%;
 }
 
+.line-moveing .move-line {
+    font-size: 40px;
+    font-weight: bolder;
+}
 
-/* ABOUT */
+.memes-container img {
+    margin: 0;
+    width: 40px;
+    height: 40px;
+}
 
-.about {
-    display: none;
+#font {
+    height: 1.5em;
+    width: 120px;
+}
+
+.color img {
+    height: 30px;
+    width: 30px;
 }
 
 

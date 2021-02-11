@@ -17,9 +17,9 @@
         <div class="main-header-content main-container flex space-between">
             <div class="logo">Memes Me<span>🤪</span></div>
             <ul class="main-nav flex space-between">
-                <li class="pointer" onclick="onShowPage(this)">gallery</li>
-                <li class="pointer" onclick="onShowPage(this)">memes</li>
-                <li class="pointer" onclick="onShowPage(this)">about</li>
+                <li class="gallery-page pointer" onclick="onShowPage(this)">gallery</li>
+                <li class="meme-page pointer" onclick="onShowPage(this)">memes</li>
+                <li class="about-page pointer" onclick="onShowPage(this)">about</li>
             </ul>
         </div>
     </header>
@@ -43,7 +43,7 @@
             <section class="image-content flex space-around"></section>
         </div>
         <!-- MEMEPAGE -->
-        <div class="main-memes">
+        <div hidden class="main-memes">
             <div class="memes-container flex">
                 <div class="canvas-container">
                     <canvas class="canvas-content"></canvas>
@@ -51,29 +51,52 @@
 
                 <div class="meme-content flex column space-between">
                     <input id="text-input" type="text" placeholder="Text line" onkeyup="onUpdateMemeText()">
-                    <section class="meme-text">
-                        <button class="move-line" id="line-up" onclick="onlineMove(this)">&#8593;</button>
-                        <button class="move-line" id="line-down" onclick="onlineMove(this)">&#8595;</button>
-                        <button class="add-text-line" onclick="onAddTextLine()">add-text-line</button>
-                        <button class="delete-text-line" onclick="onDeleteTextLines()">delete-text-line</button>
+
+                    <section class="meme-text flex space-around">
+                        <button class="switch-line" id="switch-focus-line"><img
+                                src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
+                        <div class="line-moveing">
+                            <button class="move-line" id="line-up" onclick="onlineMove(this)">&#8593;</button>
+                            <button class="move-line" id="line-down" onclick="onlineMove(this)">&#8595;</button>
+                        </div>
+                        <button class="add-text-line" onclick="onAddTextLine()"><img src="ICONS/add.png"
+                                alt=""></button>
+                        <button class="delete-text-line" onclick="onDeleteTextLines()"><img src="ICONS/trash.png"
+                                alt=""></button>
                     </section>
 
-                    <section class="meme-design">
-                        <button class="font-size-up" onclick="onFontSize(this)" value="+"> font-size-up</button>
-                        <button class="font-size-down" onclick="onFontSize(this)" value="-"> font-size-down</button>
-                        <button class="line-to-left" onclick="onTextAlign(this)" value="right">line-to-left</button>
-                        <button class="line-to-center" onclick="onTextAlign(this)" value="center">line-to-center</button>
-                        <button class="line-to-right" onclick="onTextAlign(this)" value="left">line-to-right</button>
+                    <section class="meme-design ">
+                        <div class="line1 flex space-around">
 
-                        <select name="font" id="font" onchange="onChangeFont()">
-                            <option value="font" disabled>Font</option>
-                            <option value="Ariel">Ariel</option>
-                            <option value="impact">Impact</option>
-                        </select>
-                        <label for="text-stroke-color">Text stroke color</label>
-                        <input type="color" id="stroke-color" name="favcolor" value="#ff0001" onchange="onStrokeColor()">
-                        <label for="font-stroke-color">Text color</label>
-                        <input type="color" id="font-color" name="favcolor" value="#ff0001" onchange="onFontColor()">
+                            <button class="font-size-down" onclick="onFontSize(this)" value="-"> <img
+                                    src="ICONS/decrease font - icon.png" alt=""></button>
+                            <button class="font-size-up" onclick="onFontSize(this)" value="+"><img
+                                    src="ICONS/increase font - icon.png" alt=""></button>
+                            <button class="line-to-left" onclick="onTextAlign(this)" value="right"><img
+                                    src="ICONS/align-to-left.png" alt=""></button>
+                            <button class="line-to-center" onclick="onTextAlign(this)" value="center"><img
+                                    src="ICONS/center-text-alignment.png" alt=""></button>
+                            <button class="line-to-right" onclick="onTextAlign(this)" value="left"><img
+                                    src="ICONS/align-to-right.png" alt=""></button>
+                        </div>
+                        <br />
+                        <div class="line2 flex space-around">
+
+                            <select name="font" id="font" onchange="onChangeFont()">
+                                <option value="font">Font</option>
+                                <option value="Ariel">Ariel</option>
+                                <option value="impact">Impact</option>
+                            </select>
+                            <div class="color strokeColor">
+                                <img src="ICONS/text stroke.png" alt="">
+                                <input type="color" id="stroke-color" name="favcolor" value="#ff0001" onchange="onStrokeColor()">
+                            </div>
+                            <div class="color fontcolor">
+
+                                <img src="ICONS/paint-board-and-brush.png" alt="">
+                                <input type="color" id="font-color" name="favcolor" value="#ff0001" onchange="onFontColor()">
+                            </div>
+                        </div>
                     </section>
 
                     <section class="add-sticker">
@@ -81,6 +104,7 @@
                     </section>
 
                     <section class="meme-functions">
+                        <button class="back" onclick="onShowPage(this)">Back</button>
                         <button class="share">share</button>
                         <button class="download">download</button>
                     </section>
@@ -88,8 +112,10 @@
                 </div>
             </div>
         </div>
+        <!-- SAVEDMEMES -->
+        <div hidden class="saved-memes">TODO SAVED MEMES</div>
         <!-- ABOUT -->
-        <div class="about"></div>
+        <div hidden class="about">TODO ABOUT</div>
     </main>
 
     <!-- FOOTER-CONTENT -->
