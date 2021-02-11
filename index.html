@@ -52,8 +52,8 @@
                 <div class="meme-content flex column space-between">
                     <input id="text-input" type="text" placeholder="Text line" onkeyup="onUpdateMemeText()">
                     <section class="meme-text">
-                        <button class="move-line" value="line-up" onclick="onlineMove(this)">line-up</button>
-                        <button class="move-line" value="line-down" onclick="onlineMove(this)">line-down</button>
+                        <button class="move-line" id="line-up" onclick="onlineMove(this)">&#8593;</button>
+                        <button class="move-line" id="line-down" onclick="onlineMove(this)">&#8595;</button>
                         <button class="add-text-line" onclick="onAddTextLine()">add-text-line</button>
                         <button class="delete-text-line" onclick="onDeleteTextLines()">delete-text-line</button>
                     </section>

@@ -1,7 +1,7 @@
 'use strict';
 console.log('memes service');
 
-const TEMPMEMEKEY = 'MemeCreation';
+const TEMPMEMEKEY = 'MemeLines';
 var ggalleryImgs;
 var meme;
 var gCurrLineIdx = 0;
@@ -20,21 +20,14 @@ function createMeme() {
             strokeColor: 'black',
             font: 'Ariel',
             x: 50,
-            y: 50
+            y: 30
         }]
     };
     return meme
 }
 
 
-
-
-function imagesForDisplay() {
-    let images = _createImages();
-    let imgsForDisplay = images.map(image => image);
-    return imgsForDisplay;
-}
-
+// ??
 function addTextLine() {
     gCurrLineIdx++;
     let line = {
@@ -43,12 +36,24 @@ function addTextLine() {
         align: 'center',
         fontColor: 'white',
         strokeColor: 'black',
-        font: 'Ariel'
+        font: 'Ariel',
+        x: 50,
+        y: 30
     };
     meme.lines.push(line);
-    _saveMemeCreation();
+    _saveMemeLines();
 }
-
+// VV?
+function updateMemeText(val) {
+    gMeme.lines[gCurrLineIdx].txt = val;
+}
+// VV
+function imagesForDisplay() {
+    let images = _createImages();
+    let imgsForDisplay = images.map(image => image);
+    return imgsForDisplay;
+}
+// VV
 function lineMove(elTxt) {
     switch (elTxt) {
         case 'line-up':
@@ -58,23 +63,19 @@ function lineMove(elTxt) {
             gMeme.lines[gCurrLineIdx].y++;
     }
 }
-
-function updateMemeText(val) {
-    gMeme.lines[gCurrLineIdx].txt = val;
-}
-
+// VV
 function fontSize(val) {
     let currLine = meme.lines[gCurrLineIdx];
     if (currLine.size === 10 && val === '-') return;
     val === '+' ? currLine.size++ : currLine.size--;
 }
-
+// VV
 function deleteTextLines() {
     console.log(gCurrLineIdx);
     gCurrLineIdx = 0;
     meme.lines[0].txt = '';
 }
-
+// VV
 function textAlign(val) {
     let currLine = meme.lines[gCurrLineIdx];
     switch (val) {
@@ -90,22 +91,22 @@ function textAlign(val) {
             break;
     }
 }
-
+// VV
 function changeFont(val) {
     let currLine = meme.lines[gCurrLineIdx];
     currLine.font = val;
 }
-
+// VV
 function fontColor(val) {
     let currLine = meme.lines[gCurrLineIdx];
     currLine.fontColor = val;
 }
-
+// VV
 function strokeColor(val) {
     let currLine = meme.lines[gCurrLineIdx];
     currLine.strokeColor = val;
 }
-
+// VV
 function _createImages() {
     return ggalleryImgs = [{
         id: 1,
@@ -181,11 +182,12 @@ function _createImages() {
         keywords: ['man'],
     }]
 }
-
-function _saveMemeCreation() {
-    saveToStorage(TEMPMEMEKEY, meme);
+// VV
+function _saveMemeLines() {
+    console.log(meme.lines);
+    saveToStorage(TEMPMEMEKEY, meme.lines);
 }
-
+// VV
 function getCurrLineIdx() {
     return gCurrLineIdx;
 }
