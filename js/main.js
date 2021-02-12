@@ -19,6 +19,7 @@ function init() {
     gCurrLineIdx = getCurrLineIdx();
     gImages = imagesForDisplay();
 
+    let elClassName = '';
     onRenderGallery();
     createCanvas();
 }
@@ -170,6 +171,8 @@ function onShowPage(el) {
         elGalleryPage.hidden = false;
         onDeleteTextLines();
     } else if (el.innerText === 'memes'.toUpperCase()) {
+        onRenderMemes();
+
         elGalleryPage.hidden = true;
         elAboutPage.hidden = true;
         elMemesPage.hidden = true;
@@ -180,6 +183,29 @@ function onShowPage(el) {
         elGalleryPage.hidden = true;
         elAboutPage.hidden = false;
     };
+}
+
+function onRenderMemes() {
+    let savedMemes = loadFromStorage(MEMESGALLERYKEY);
+    let strHTML;
+
+    if (!savedMemes) savedMemes = memesForDisplay();
+    if (savedMemes.length === 0) strHTML = '<h1>No memes yet...</h1>';
+    else strHTML = savedMemes.map(meme => {
+        return ` 
+            <div class="img${meme.id}">
+            <img class="delete-meme-img" id="${meme.id}" title="Delete meme" onclick="onDeleteMeme(this)" src="ICONS/trash.png" alt="">
+            <img  class="${meme.id}" src="${meme.url}" alt=""></div>`;
+    }).join('');
+
+
+    document.querySelector('.saved-memes-content').innerHTML = strHTML;
+}
+
+function onDeleteMeme(el) {
+    let elIdNum = +el.id;
+    deleteMeme(elIdNum);
+    onRenderMemes();
 }
 
 function onRenderPhoto(el) {
@@ -204,10 +230,10 @@ function downloadImg(ev, elLink) {
     ev.stopPropagation();
 
     let imgContent = gElCanvas.toDataURL('image/jpeg');
-    console.log('imgContent', imgContent);
     elLink.href = imgContent;
 }
 
 function saveMeme() {
-
+    let dataURL = gElCanvas.toDataURL();
+    pushToMemesGallery(dataURL);
 }

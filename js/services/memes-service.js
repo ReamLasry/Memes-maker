@@ -1,7 +1,7 @@
 'use strict';
 
 const TEMPMEMEKEY = 'MemeLines';
-var ggalleryImgs;
+var gGalleryImgs;
 var meme;
 
 
@@ -126,7 +126,7 @@ function strokeColor(val) {
 }
 
 function _createImages() {
-    return ggalleryImgs = [{
+    return gGalleryImgs = [{
         id: 1,
         url: 'image/1.jpg',
         keywords: ['funny', 'man'],

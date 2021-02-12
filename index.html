@@ -38,7 +38,7 @@
                 </ul>
             </section>
 
-            <section class="image-content flex space-around"></section>
+            <section class="image-content flex space-around wrap"></section>
         </div>
         <!-- MEMEPAGE -->
         <div hidden class="main-memes">
@@ -103,8 +103,8 @@
 
                     <section class="meme-functions">
                         <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
-                            <a href="" onclick="saveMeme()">Save</a>
 
+                            <a href="#" onclick="saveMeme()">Save</a>
                             <a href="#">
                                 share
                             </a>
@@ -119,7 +119,9 @@
             </div>
         </div>
         <!-- SAVEDMEMES -->
-        <div hidden class="saved-memes">TODO SAVED MEMES</div>
+        <div hidden class="saved-memes">
+            <section class="saved-memes-content flex space-around wrap"></section>
+        </div>
         <!-- ABOUT -->
         <div hidden class="about">TODO ABOUT</div>
     </main>

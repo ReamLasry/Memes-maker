@@ -79,7 +79,8 @@ img {
 }
 
 .image-content {
-    flex-wrap: wrap;
+    position: relative;
+    bottom: 30px;
 }
 
 .image-content img {
@@ -136,15 +137,27 @@ img {
     width: 30px;
 }
 
+.saved-memes-content div img {
+    object-fit: unset;
+    margin: 10px 10px 10px 0px;
+}
+
+.delete-meme-img {
+    cursor: pointer;
+    margin: 0px 0px 10px 0px !important;
+    width: 30px;
+    height: 30px;
+}
+
 
 /* FOOTER */
 
 .main-footer {
-    /* position: absolute; */
-    /* margin-top: ; */
+    position: fixed;
+    bottom: 0;
     width: 100%;
     align-items: center;
-    height: 50px;
+    height: 30px;
     color: white;
     background-color: rgb(65, 60, 60);
 }
@@ -172,6 +185,10 @@ img {
 
 .space-around {
     justify-content: space-around;
+}
+
+.wrap {
+    flex-wrap: wrap;
 }
 
 @media (max-width: 1024px) {
