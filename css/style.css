@@ -143,10 +143,9 @@ img {
 
 .main-footer {
     /* position: absolute; */
-    /* margin-top: ; */
     width: 100%;
     align-items: center;
-    height: 50px;
+    height: 100px;
     color: white;
     background-color: rgb(65, 60, 60);
 }
