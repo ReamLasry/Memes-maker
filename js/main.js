@@ -24,7 +24,54 @@ function init() {
 }
 
 
-// ?? CURRLINE V
+
+
+function onUpdateMemeText() {
+    let textInput = document.getElementById('text-input');
+    let textInputVal = textInput.value;
+    updateMemeText(textInputVal);
+    renderCanvas();
+}
+
+function createCanvas() {
+    gElCanvas = document.querySelector('.canvas-content');
+    gCtx = gElCanvas.getContext('2d');
+    drawImg(gCurrImgUrl);
+}
+
+function renderCanvas() {
+    gCurrLineIdx = getCurrLineIdx();
+    let currLine = gMeme.lines[gCurrLineIdx];
+    drawImg(gCurrImgUrl);
+    drawText(currLine.txt, currLine.size, currLine.fontColor, currLine.strokeColor, currLine.align, currLine.font, gElCanvas.width / 2, currLine.y);
+}
+
+
+// Function to load image on the canvas
+function drawImg(url) {
+    gCurrLineIdx = getCurrLineIdx();
+    let currLine = gMeme.lines[gCurrLineIdx];
+    const img = new Image();
+
+    img.src = url;
+    img.onload = () => {
+        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+        //If you dont call drawText the text does not render to the canvas
+        drawText(currLine.txt, currLine.size, currLine.fontColor, currLine.strokeColor, currLine.align, currLine.font, gElCanvas.width / 2, currLine.y);
+    };
+}
+
+// Function to add text on the canvas
+function drawText(text = '', fontSize = 20, fontColor = 'white', strokeColor = 'black', align = 'center', font = "ariel", x = gElCanvas.width / 2, y = 20) {
+    gCtx.strokeStyle = strokeColor;
+    gCtx.fillStyle = fontColor;
+    gCtx.font = `${fontSize}px ${font}`;
+    gCtx.textAlign = align;
+    gCtx.fillText(text, x, y);
+    gCtx.strokeText(text, x, y);
+}
+
+//Function to add new text line on the canvas.
 function onAddTextLine() {
     let textInput = document.getElementById('text-input');
     textInput.value = '';
@@ -34,55 +81,15 @@ function onAddTextLine() {
     var currLine = gMeme.lines[gCurrLineIdx];
     drawText(currLine.txt, currLine.size, currLine.fontColor, currLine.strokeColor, currLine.align, currLine.font, gElCanvas.width / 2, currLine.y);
 }
-// VV?
-function onUpdateMemeText() {
-    let textInput = document.getElementById('text-input');
-    let textInputVal = textInput.value;
-    updateMemeText(textInputVal);
-    renderCanvas();
-}
-// VV
-function createCanvas() {
-    gElCanvas = document.querySelector('.canvas-content');
-    gCtx = gElCanvas.getContext('2d');
-    drawImg(gCurrImgUrl);
-}
-// VV
-function drawImg(url) {
-    gCurrLineIdx = getCurrLineIdx();
-    let currLine = gMeme.lines[gCurrLineIdx];
-    const img = new Image();
 
-    img.src = url;
-    img.onload = () => {
-        gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-        drawText(currLine.txt, currLine.size, currLine.fontColor, currLine.strokeColor, currLine.align, currLine.font, gElCanvas.width / 2, currLine.y);
-    };
-}
-// VV
-function renderCanvas() {
-    gCurrLineIdx = getCurrLineIdx();
-    let currLine = gMeme.lines[gCurrLineIdx];
-    drawImg(gCurrImgUrl);
-    drawText(currLine.txt, currLine.size, currLine.fontColor, currLine.strokeColor, currLine.align, currLine.font, gElCanvas.width / 2, currLine.y);
-}
-// VV
-function drawText(text = '', fontSize = 20, fontColor = 'white', strokeColor = 'black', align = 'center', font = "ariel", x = gElCanvas.width / 2, y = 20) {
-    gCtx.strokeStyle = strokeColor;
-    gCtx.fillStyle = fontColor;
-    gCtx.font = `${fontSize}px ${font}`;
-    gCtx.textAlign = align;
-    gCtx.fillText(text, x, y);
-    gCtx.strokeText(text, x, y);
-}
-// VV
+
 function onRenderGallery() {
     let strHTML = gImages.map(image => {
         return `<div class="img${image.id}"><img  class="${image.id}" src="image/${image.id}.jpg" alt="" onclick="onRenderPhoto(this)"></div>`;
     }).join('');
     document.querySelector('.image-content').innerHTML = strHTML;
 }
-// VV CURRLINE V
+
 function onDeleteTextLines() {
     let textInput = document.getElementById('text-input');
     textInput.value = '';
@@ -91,44 +98,44 @@ function onDeleteTextLines() {
     gCurrLineIdx = getCurrLineIdx();
     renderCanvas();
 }
-// VV
+
 function onFontSize(el) {
     let elValue = el.value;
     fontSize(elValue);
     renderCanvas();
 }
-// VV
+
 function onTextAlign(el) {
     let elValue = el.value;
     textAlign(elValue);
     renderCanvas();
 }
-// VV
+
 function onChangeFont() {
     let elFont = document.getElementById('font');
     let elFontValue = elFont.value;
     changeFont(elFontValue);
     renderCanvas();
 }
-// VV
+
 function onFontColor() {
     let elColor = document.getElementById('font-color');
     let elColorVal = elColor.value;
     fontColor(elColorVal);
     renderCanvas();
 }
-// VV
+
 function onStrokeColor() {
     let elColor = document.getElementById('stroke-color');
     let elColorVal = elColor.value;
     strokeColor(elColorVal);
     renderCanvas();
 }
-// VV
+
 function clearCanvas() {
     gCtx.clearRect(0, 0, gElCanvas.width, gElCanvas.height);
 }
-// VV
+
 function onlineMove(el) {
     let elText = el.id;
     switch (elText) {
@@ -141,7 +148,7 @@ function onlineMove(el) {
     renderCanvas();
 }
 
-// VV
+
 function onShowPage(el) {
     let elGalleryPage = document.querySelector('.gallery');
     let elSavedMemesPage = document.querySelector('.saved-memes')
@@ -167,7 +174,6 @@ function onShowPage(el) {
     };
 }
 
-// VV
 function onRenderPhoto(el) {
     let imageId = +el.className;
     changeSelectedPohto(imageId);
