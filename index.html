@@ -51,7 +51,7 @@
                     <input id="text-input" type="text" placeholder="Text line" onkeyup="onUpdateMemeText()">
 
                     <section class="meme-text flex space-around">
-                        <button class="switch-line" id="switch-focus-line"><img
+                        <button class="switch-line" id="switch-focus-line" onclick="onSwitchLine()"><img
                                 src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
                         <div class="line-moveing">
                             <button class="move-line" id="line-up" onclick="onlineMove(this)">&#8593;</button>
@@ -103,10 +103,14 @@
 
                     <section class="meme-functions">
                         <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
-                            <input name="img" id="imgData" type="hidden" />
-                            <button class="share" type="submit">share</button>
-                            <a href="#" onclick="downloadImg(this)" download="my-img.jpg">
-                                <button class="download">download</button>
+                            <a href="" onclick="saveMeme()">Save</a>
+
+                            <a href="#">
+                                share
+                            </a>
+
+                            <a href="#" onclick="downloadImg(event,this)" download="my-img.jpg">
+                                Download
                             </a>
                         </form>
                     </section>
@@ -130,6 +134,8 @@
     <script src="js/services/upload-service.js"></script>
     <script src="js/services/storage-services.js"></script>
     <script src="js/services/memes-service.js"></script>
+    <script src="js/services/memes-gallery-service.js"></script>
+
     <script src="js/main.js"></script>
 </body>
 

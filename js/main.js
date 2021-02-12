@@ -25,6 +25,22 @@ function init() {
 
 
 
+function createCanvas() {
+    gElCanvas = document.querySelector('.canvas-content');
+    gCtx = gElCanvas.getContext('2d');
+    drawImg(gCurrImgUrl);
+}
+
+function renderCanvas() {
+    drawImg(gCurrImgUrl);
+}
+
+function renderLines() {
+    let lines = gMeme.lines;
+    lines.forEach(line => {
+        drawText(line.txt, line.size, line.fontColor, line.strokeColor, line.align, line.font, gElCanvas.width / 2, line.y);
+    });
+}
 
 function onUpdateMemeText() {
     let textInput = document.getElementById('text-input');
@@ -33,31 +49,13 @@ function onUpdateMemeText() {
     renderCanvas();
 }
 
-function createCanvas() {
-    gElCanvas = document.querySelector('.canvas-content');
-    gCtx = gElCanvas.getContext('2d');
-    drawImg(gCurrImgUrl);
-}
-
-function renderCanvas() {
-    gCurrLineIdx = getCurrLineIdx();
-    let currLine = gMeme.lines[gCurrLineIdx];
-    drawImg(gCurrImgUrl);
-    drawText(currLine.txt, currLine.size, currLine.fontColor, currLine.strokeColor, currLine.align, currLine.font, gElCanvas.width / 2, currLine.y);
-}
-
-
 // Function to load image on the canvas
 function drawImg(url) {
-    gCurrLineIdx = getCurrLineIdx();
-    let currLine = gMeme.lines[gCurrLineIdx];
     const img = new Image();
-
     img.src = url;
     img.onload = () => {
         gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
-        //If you dont call drawText the text does not render to the canvas
-        drawText(currLine.txt, currLine.size, currLine.fontColor, currLine.strokeColor, currLine.align, currLine.font, gElCanvas.width / 2, currLine.y);
+        renderLines();
     };
 }
 
@@ -76,10 +74,11 @@ function onAddTextLine() {
     let textInput = document.getElementById('text-input');
     textInput.value = '';
 
-    addTextLine();
-    gCurrLineIdx = getCurrLineIdx();
-    var currLine = gMeme.lines[gCurrLineIdx];
-    drawText(currLine.txt, currLine.size, currLine.fontColor, currLine.strokeColor, currLine.align, currLine.font, gElCanvas.width / 2, currLine.y);
+    if (gFirstLineAdd) {
+        addTextLine(gElCanvas.height - 20);
+        gFirstLineAdd = !gFirstLineAdd;
+    } else addTextLine(gElCanvas.height / 2);
+    renderCanvas();
 }
 
 
@@ -91,6 +90,7 @@ function onRenderGallery() {
 }
 
 function onDeleteTextLines() {
+    if (!gFirstLineAdd) gFirstLineAdd = true;
     let textInput = document.getElementById('text-input');
     textInput.value = '';
 
@@ -148,6 +148,14 @@ function onlineMove(el) {
     renderCanvas();
 }
 
+function onSwitchLine() {
+    lineFocus();
+    gCurrLineIdx = getCurrLineIdx();
+
+    let textInput = document.getElementById('text-input');
+    let currLineTxt = gMeme.lines[gCurrLineIdx].txt;
+    textInput.value = currLineTxt;
+}
 
 function onShowPage(el) {
     let elGalleryPage = document.querySelector('.gallery');
@@ -155,12 +163,12 @@ function onShowPage(el) {
     let elMemesPage = document.querySelector('.main-memes');
     let elAboutPage = document.querySelector('.about');
 
-    if (el.innerText === 'gallery'.toUpperCase() ||
-        el.innerText === 'Back') {
+    if (el.innerText === 'gallery'.toUpperCase()) {
         elAboutPage.hidden = true;
         elMemesPage.hidden = true;
         elSavedMemesPage.hidden = true;
         elGalleryPage.hidden = false;
+        onDeleteTextLines();
     } else if (el.innerText === 'memes'.toUpperCase()) {
         elGalleryPage.hidden = true;
         elAboutPage.hidden = true;
@@ -192,9 +200,14 @@ function onRenderPhoto(el) {
     elMemesPage.hidden = false;
 }
 
-function downloadImg(elLink) {
-    let gElCanvas = document.querySelector('.canvas-content')
+function downloadImg(ev, elLink) {
+    ev.stopPropagation();
 
     let imgContent = gElCanvas.toDataURL('image/jpeg');
+    console.log('imgContent', imgContent);
     elLink.href = imgContent;
+}
+
+function saveMeme() {
+
 }

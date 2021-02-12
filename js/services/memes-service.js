@@ -19,13 +19,13 @@ function createMeme() {
             strokeColor: 'black',
             font: 'Impact',
             x: 50,
-            y: 30
+            y: 20
         }]
     };
     return meme
 }
 
-function addTextLine() {
+function addTextLine(y) {
     // ADDINGLINE
     meme.selectedLineIdx++;
     let line = {
@@ -36,7 +36,7 @@ function addTextLine() {
         strokeColor: 'black',
         font: 'Impact',
         x: 50,
-        y: 300
+        y
     };
     meme.lines.push(line);
 }
@@ -63,6 +63,12 @@ function lineMove(elTxt) {
         case 'line-down':
             gMeme.lines[meme.selectedLineIdx].y++;
     }
+}
+
+function lineFocus() {
+    console.log(meme.selectedLineIdx);
+    meme.selectedLineIdx--;
+    if (meme.selectedLineIdx < 0) meme.selectedLineIdx = gMeme.lines.length - 1;
 }
 
 function fontSize(val) {
