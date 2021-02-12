@@ -24,6 +24,12 @@ li {
     cursor: pointer;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
 ul {
     margin: 0;
     width: 40%;
@@ -144,6 +150,27 @@ img {
     height: 30px;
 }
 
+.messege-modal {
+    height: 41px;
+    margin: 5px 0 0 15%;
+    padding: 6px 5px 5px 5px;
+    visibility: hidden;
+    width: fit-content;
+    border: 5px solid black;
+    background-color: lightblue;
+}
+
+.meme-functions a:hover {
+    color: white;
+}
+
+.meme-functions a {
+    background-color: gray;
+    text-align: center;
+    width: 20%;
+    border: 1px solid black;
+}
+
 
 /* FOOTER */
 
@@ -184,7 +211,14 @@ img {
     flex-wrap: wrap;
 }
 
+
+/* RESPONSIVENESS */
+
+
+/* MEDIUM-BRAKEPOINT */
+
 @media (max-width: 1024px) {
+    /* GENERAL */
     body {
         font-size: 2rem;
         margin: 0;
@@ -204,6 +238,7 @@ img {
         font-size: 2.1rem;
         margin-left: 20px;
     }
+    /* GALLERY */
     .gallery {
         border-radius: unset;
     }
@@ -225,5 +260,42 @@ img {
         font-size: 2.5rem;
         /* height: 100%; */
     }
-    /* .memes-container {} */
+    /* MEMES */
+    .memes-container {
+        flex-direction: column;
+    }
+    .canvas-container {
+        width: 100%;
+    }
+    #text-input {
+        margin: 0px auto 30px auto;
+        width: 80%;
+        height: 50px;
+        font-size: 3rem;
+    }
+    .meme-content {
+        width: 100%;
+        padding-left: unset;
+    }
+    .meme-text {
+        justify-content: space-between;
+    }
+    .meme-design {
+        margin-top: 10px;
+        justify-content: unset;
+    }
+    .add-sticker {
+        text-align: center;
+        margin: 20px;
+    }
+    .messege-modal {
+        display: none !important;
+    }
+    #switch-focus-line {
+        margin-left: 10px;
+    }
+    #font {
+        height: 50px;
+        font-size: 2.5rem;
+    }
 }

@@ -24,7 +24,7 @@
 
     <!-- MAIN_CONTENT -->
     <main class="main-content main-container">
-        <!-- GALLERYPAGE -->
+        <!-- PAGE GALLERY -->
         <div class="gallery">
             <section class="search-content flex space-around">
                 <input id="search-inpt" type="text" placeholder="Search keyword">
@@ -43,13 +43,18 @@
         <!-- MEMEPAGE -->
         <div hidden class="main-memes">
             <div class="memes-container flex">
+
+                <!-- CANVAS -->
                 <div class="canvas-container">
                     <canvas class="canvas-content"></canvas>
                 </div>
 
+                <!-- MEME-EDITOR -->
                 <div class="meme-content flex column space-between">
+                    <!-- SEARCH-LINE -->
                     <input id="text-input" type="text" placeholder="Text line" onkeyup="onUpdateMemeText()">
 
+                    <!-- TEXT-EDITING -->
                     <section class="meme-text flex space-around">
                         <button class="switch-line" id="switch-focus-line" onclick="onSwitchLine()"><img
                                 src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
@@ -62,7 +67,6 @@
                         <button class="delete-text-line" onclick="onDeleteTextLines()"><img src="ICONS/trash.png"
                                 alt=""></button>
                     </section>
-
                     <section class="meme-design ">
                         <div class="line1 flex space-around">
 
@@ -97,33 +101,36 @@
                         </div>
                     </section>
 
+                    <!-- STICKERS -->
                     <section class="add-sticker">
                         <div>STICKER</div>
                     </section>
 
-                    <section class="meme-functions">
-                        <form action="" method="POST" enctype="multipart/form-data" onsubmit="uploadImg(this, event)">
-
+                    <!-- MEME-FUNCTIONS -->
+                    <div>
+                        <section class="meme-functions flex space-around">
                             <a href="#" onclick="saveMeme()">Save</a>
-                            <a href="#">
-                                share
-                            </a>
-
-                            <a href="#" onclick="downloadImg(event,this)" download="my-img.jpg">
-                                Download
-                            </a>
-                        </form>
-                    </section>
+                            <a href="#" onclick="shareImg()">share</a>
+                            <a href="#" onclick="downloadImg(event,this)" download="my-img.jpg">Download</a>
+                        </section>
+                        <div class="messege-modal"></div>
+                    </div>
 
                 </div>
             </div>
         </div>
-        <!-- SAVEDMEMES -->
+
+        <!-- PAGE SAVED-MEMES-GALLERY -->
         <div hidden class="saved-memes">
             <section class="saved-memes-content flex space-around wrap"></section>
         </div>
-        <!-- ABOUT -->
-        <div hidden class="about">TODO ABOUT</div>
+
+        <!-- PAGE ABOUT -->
+        <div hidden class="about">
+            <h2> Welcome to Memes Me! <br /> In Memes Me we aloow you to take photos and edit them by yourself according to your mind. <br /> You have the option to add text lines in diffrent size fonts and colors, נeyond that you have the option to download
+                the memes you make and even save them in your own gallery! <br /> Soon Memes me will open the option even to share your memes on Facebook, Twitter, Instagram and more... <br> Until then enjoy your staying and dont forget to make memes.
+            </h2>
+        </div>
     </main>
 
     <!-- FOOTER-CONTENT -->
@@ -137,7 +144,6 @@
     <script src="js/services/storage-services.js"></script>
     <script src="js/services/memes-service.js"></script>
     <script src="js/services/memes-gallery-service.js"></script>
-
     <script src="js/main.js"></script>
 </body>
 
