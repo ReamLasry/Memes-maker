@@ -75,14 +75,7 @@ img {
 }
 
 .search-content {
-    position: relative;
-    bottom: 10px;
     margin: 20px 0px 20px;
-}
-
-.image-content {
-    position: relative;
-    bottom: 30px;
 }
 
 .image-content img {
@@ -155,8 +148,6 @@ img {
 /* FOOTER */
 
 .main-footer {
-    position: fixed;
-    bottom: 0;
     width: 100%;
     align-items: center;
     height: 30px;
