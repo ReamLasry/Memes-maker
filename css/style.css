@@ -75,6 +75,8 @@ img {
 }
 
 .search-content {
+    position: relative;
+    bottom: 10px;
     margin: 20px 0px 20px;
 }
 
@@ -218,9 +220,6 @@ img {
         width: 50%;
         padding-left: unset;
     }
-    /* .search-content {
-        font-size: 2rem;
-    } */
     #search-inpt {
         width: 40%;
         font-size: 2rem;
