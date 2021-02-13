@@ -7,10 +7,11 @@ var gMeme;
 var gFirstLineAdd;
 var gCurrLineIdx;
 var gCurrImgUrl;
-
+var gOpenMenue;
 
 
 function init() {
+    gOpenMenue = false;
     gFirstLineAdd = true;
     gMeme = createMeme();
     gCurrLineIdx = getCurrLineIdx();
@@ -53,25 +54,31 @@ function onShowPage(el) {
     let elMemesPage = document.querySelector('.main-memes');
     let elAboutPage = document.querySelector('.about');
 
-    if (el.innerText === 'gallery'.toUpperCase()) {
-        elAboutPage.hidden = true;
-        elMemesPage.hidden = true;
-        elSavedMemesPage.hidden = true;
-        elGalleryPage.hidden = false;
-        onDeleteTextLines();
-    } else if (el.innerText === 'memes'.toUpperCase()) {
-        onRenderMemes();
+    switch (el.innerText) {
+        case 'gallery'.toUpperCase():
+            elMemesPage.hidden = true;
+            elSavedMemesPage.hidden = true;
+            elGalleryPage.hidden = false;
+            onDeleteTextLines();
+            break;
+        case 'memes'.toUpperCase():
+            onRenderMemes();
+            elGalleryPage.hidden = true;
+            elAboutPage.hidden = true;
+            elMemesPage.hidden = true;
+            elSavedMemesPage.hidden = false
+            break;
+        case 'about'.toUpperCase():
+            elSavedMemesPage.hidden = true;
+            elMemesPage.hidden = true;
+            elGalleryPage.hidden = true;
+            elAboutPage.hidden = false;
+            break;
+    }
 
-        elGalleryPage.hidden = true;
-        elAboutPage.hidden = true;
-        elMemesPage.hidden = true;
-        elSavedMemesPage.hidden = false
-    } else {
-        elSavedMemesPage.hidden = true;
-        elMemesPage.hidden = true;
-        elGalleryPage.hidden = true;
-        elAboutPage.hidden = false;
-    };
+    let elNavBar = document.querySelector('.main-nav');
+    elNavBar.classList.remove('menu-open');
+    gOpenMenue = false;
 }
 
 function onDeleteMeme(el) {
@@ -112,6 +119,10 @@ function addClicksAndTouch() {
     //Page about
     elAboutPage.addEventListener('click', function() { onShowPage(this) });
     elAboutPage.addEventListener('touchend', function() { onShowPage(this) });
+
+    //MENUE BUTTON 
+    let elMenueBtn = document.querySelector('.menu-btn');
+    elMenueBtn.addEventListener('touchend', onToggleMenu);
 
     // TEXT LINE INPUT
     let elLineInput = document.getElementById('text-input');
@@ -191,6 +202,21 @@ function addClicksAndTouch() {
     let elDownloadMeme = document.getElementById('download-meme');
     elDownloadMeme.addEventListener('click', function() { downloadImg(event, this) });
     elDownloadMeme.addEventListener('touchend', function() { downloadImg(event, this) });
+
+}
+
+function onToggleMenu() {
+    let elNavBar = document.querySelector('.main-nav');
+    switch (gOpenMenue) {
+        case false:
+            elNavBar.classList.add('menu-open');
+            gOpenMenue = true;
+            break;
+        case true:
+            elNavBar.classList.remove('menu-open');
+            gOpenMenue = false;
+            break;
+    }
 }
 
 // CANVAS

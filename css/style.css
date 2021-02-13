@@ -42,6 +42,11 @@ img {
     margin: 10px;
 }
 
+button:focus {
+    border: none;
+    outline: none;
+}
+
 
 /* HEADER */
 
@@ -66,6 +71,17 @@ img {
 .nav:hover {
     background-color: rgb(54, 53, 53);
     border-radius: 15%;
+}
+
+.menu-btn {
+    display: none;
+    color: rgb(255, 255, 255);
+    padding: unset;
+    background-color: unset;
+    border: unset;
+    margin-left: 20%;
+    height: 100%;
+    font-size: 4rem;
 }
 
 
@@ -246,7 +262,7 @@ img {
         width: 50%;
         padding-left: unset;
     }
-    #search-inpt {
+    #search-input {
         width: 40%;
         font-size: 2rem;
     }
@@ -316,5 +332,94 @@ img {
     /* FOOTER */
     .main-footer {
         height: 50px;
+    }
+}
+
+@media (max-width: 720px) {
+    .main-container {
+        margin: 0 auto;
+        max-width: 620px;
+    }
+    .menu-btn {
+        display: unset;
+        margin: 0 auto;
+    }
+    .main-header-content {
+        display: flex;
+    }
+    .main-nav {
+        display: none;
+        position: absolute;
+        flex-direction: column;
+        justify-content: unset;
+        top: 150px;
+        width: 100%;
+        height: 100%;
+        padding-left: 0px;
+        background-color: rgb(24, 19, 19);
+    }
+    .main-nav.menu-open {
+        display: unset;
+    }
+    .main-nav li {
+        padding-left: 30%;
+        margin-bottom: 60px;
+    }
+    .search-keywords {
+        display: none;
+    }
+    .about h2 {
+        font-size: 2rem;
+    }
+    .image-content div img {
+        height: 280px;
+        width: 280px;
+        margin-right: 50px;
+    }
+    .search-content {
+        margin-right: 35px;
+    }
+    #search-input {
+        width: 82%
+    }
+    .canvas-container {
+        height: unset;
+    }
+    .canvas-content {
+        width: 88%;
+        height: 300px;
+    }
+    #text-input {
+        margin-left: 5%;
+    }
+    .meme-text button {
+        padding: unset;
+        height: 50px;
+        width: 50px;
+    }
+    .meme-text button img {
+        height: 40px;
+        width: 40px;
+    }
+    .line-moveing .move-line {
+        height: 50px;
+        width: 40px;
+        font-size: 40px;
+    }
+    .meme-text {
+        width: 90%;
+    }
+    .line1 {
+        justify-content: space-between;
+        width: 90%;
+    }
+    .line1 button {
+        padding: unset;
+        height: 50px;
+        width: 50px;
+    }
+    .line1 button img {
+        height: 40px;
+        width: 40px;
     }
 }
