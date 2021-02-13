@@ -142,6 +142,7 @@ function addClicksAndTouch() {
     let elKeyWord2 = document.querySelector('.keyWord2');
     let elKeyWord3 = document.querySelector('.keyWord3');
     let elKeyWord4 = document.querySelector('.keyWord4');
+    let elKeyWord5 = document.querySelector('.keyWord5');
     // KeyWord1
     elKeyWord1.addEventListener('click', function() { searchByThisWord(this) });
     elKeyWord1.addEventListener('touchend', function() { searchByThisWord(this) });
@@ -154,6 +155,9 @@ function addClicksAndTouch() {
     // KeyWord4
     elKeyWord4.addEventListener('click', function() { searchByThisWord(this) });
     elKeyWord4.addEventListener('touchend', function() { searchByThisWord(this) });
+    // KeyWord5
+    elKeyWord5.addEventListener('click', function() { searchByThisWord(this) });
+    elKeyWord5.addEventListener('touchend', function() { searchByThisWord(this) });
 
     // TEXT LINE INPUT
     let elLineInput = document.getElementById('text-input');
