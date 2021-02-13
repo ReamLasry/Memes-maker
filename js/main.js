@@ -24,12 +24,7 @@ function init() {
 }
 
 // PAGES FUNCTIONS
-function onRenderGallery() {
-    let strHTML = gImages.map(image => {
-        return `<div class="img${image.id}"><img  class="${image.id}" src="image/${image.id}.jpg" alt="" onclick="onRenderPhoto(this)"></div>`;
-    }).join('');
-    document.querySelector('.image-content').innerHTML = strHTML;
-}
+
 
 function onRenderMemes() {
     let savedMemes = loadFromStorage(MEMESGALLERYKEY);
@@ -44,7 +39,6 @@ function onRenderMemes() {
             <img  class="meme ${meme.id}" src="${meme.url}" alt="">
             </div>`;
     }).join('');
-
 
     document.querySelector('.saved-memes-content').innerHTML = strHTML;
 }
@@ -80,6 +74,20 @@ function onShowPage(el) {
     let elNavBar = document.querySelector('.main-nav');
     elNavBar.classList.remove('menu-open');
     gOpenMenue = false;
+}
+
+function onToggleMenu() {
+    let elNavBar = document.querySelector('.main-nav');
+    switch (gOpenMenue) {
+        case false:
+            elNavBar.classList.add('menu-open');
+            gOpenMenue = true;
+            break;
+        case true:
+            elNavBar.classList.remove('menu-open');
+            gOpenMenue = false;
+            break;
+    }
 }
 
 function onDeleteMeme(el) {
@@ -124,6 +132,11 @@ function addClicksAndTouch() {
     //MENUE BUTTON 
     let elMenueBtn = document.querySelector('.menu-btn');
     elMenueBtn.addEventListener('touchend', onToggleMenu);
+
+    //TEXT KEYWORD INPUT
+    let elKeyWordInput = document.getElementById('search-input');
+    elKeyWordInput.addEventListener('keyup', function() { onSearchKeyWord(this) });
+
 
     // TEXT LINE INPUT
     let elLineInput = document.getElementById('text-input');
@@ -206,18 +219,27 @@ function addClicksAndTouch() {
 
 }
 
-function onToggleMenu() {
-    let elNavBar = document.querySelector('.main-nav');
-    switch (gOpenMenue) {
-        case false:
-            elNavBar.classList.add('menu-open');
-            gOpenMenue = true;
-            break;
-        case true:
-            elNavBar.classList.remove('menu-open');
-            gOpenMenue = false;
-            break;
-    }
+// GALLERY
+function onRenderGallery() {
+    let strHTML = gImages.map(image => {
+        return `<div class="img${image.id}"><img  class="${image.id}" src="image/${image.id}.jpg" alt="" onclick="onRenderPhoto(this)"></div>`;
+    }).join('');
+    document.querySelector('.image-content').innerHTML = strHTML;
+}
+
+function renderKeyWordGallery(photos) {
+    let strHTML = photos.map(image => {
+        return `<div class="img${image.id}"><img  class="${image.id}" src="image/${image.id}.jpg" alt="" onclick="onRenderPhoto(this)"></div>`;
+    }).join('');
+    document.querySelector('.image-content').innerHTML = strHTML;
+}
+
+function onSearchKeyWord(el) {
+    let searchKey = el.value;
+    let searchPhotos = getKeyWordPicturs(searchKey);
+
+    renderKeyWordGallery(searchPhotos);
+    if (searchKey === '') onRenderGallery();
 }
 
 // CANVAS
@@ -268,11 +290,17 @@ function onAddTextLine() {
     let textInput = document.getElementById('text-input');
     textInput.value = '';
 
-    if (gFirstLineAdd) {
-        addTextLine(gElCanvas.height - 20);
-        gFirstLineAdd = !gFirstLineAdd;
-    } else addTextLine(gElCanvas.height / 2);
-    renderCanvas();
+    switch (gFirstLineAdd) {
+        case true:
+            addTextLine(gElCanvas.height - 20);
+            gFirstLineAdd = !gFirstLineAdd;
+            break;
+
+        case false:
+            addTextLine(gElCanvas.height / 2);
+            renderCanvas();
+            break;
+    }
 }
 
 function onDeleteTextLines() {

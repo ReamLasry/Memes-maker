@@ -205,3 +205,13 @@ function saveCanvas() {
 function getCurrLineIdx() {
     return meme.selectedLineIdx;
 }
+
+function getKeyWordPicturs(inputVal) {
+    var photos = [];
+    for (var i = 0; i < gGalleryImgs.length; i++) {
+        for (var j = 0; j < gGalleryImgs[i].keywords.length; j++) {
+            if (gGalleryImgs[i].keywords[j].includes(inputVal)) photos.push(gGalleryImgs[i]);
+        }
+    }
+    return photos;
+}
