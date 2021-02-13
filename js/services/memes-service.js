@@ -1,10 +1,8 @@
 'use strict';
-
 const TEMPMEMEKEY = 'MemeLines';
+
 var gGalleryImgs;
 var meme;
-
-
 
 function createMeme() {
     meme = {
@@ -66,7 +64,6 @@ function lineMove(elTxt) {
 }
 
 function lineFocus() {
-    console.log(meme.selectedLineIdx);
     meme.selectedLineIdx--;
     if (meme.selectedLineIdx < 0) meme.selectedLineIdx = gMeme.lines.length - 1;
 }

@@ -14,10 +14,11 @@
     <header class="main-header ">
         <div class="main-header-content main-container flex space-between">
             <div class="logo">Memes Me<span>🤪</span></div>
+
             <ul class="main-nav flex space-between">
-                <li class="nav gallery-page pointer" onclick="onShowPage(this)">gallery</li>
-                <li class="nav meme-page pointer" onclick="onShowPage(this)">memes</li>
-                <li class="nav about-page pointer" onclick="onShowPage(this)">about</li>
+                <li class="nav gallery-page pointer">gallery</li>
+                <li class="nav meme-page pointer">memes</li>
+                <li class="nav about-page pointer">about</li>
             </ul>
         </div>
     </header>
@@ -43,7 +44,6 @@
         <!-- MEMEPAGE -->
         <div hidden class="main-memes">
             <div class="memes-container flex">
-
                 <!-- CANVAS -->
                 <div class="canvas-container">
                     <canvas class="canvas-content"></canvas>
@@ -52,51 +52,50 @@
                 <!-- MEME-EDITOR -->
                 <div class="meme-content flex column space-between">
                     <!-- SEARCH-LINE -->
-                    <input id="text-input" type="text" placeholder="Text line" onkeyup="onUpdateMemeText()">
+                    <input id="text-input" type="text" placeholder="Text line">
 
                     <!-- TEXT-EDITING -->
                     <section class="meme-text flex space-around">
-                        <button class="switch-line" id="switch-focus-line" onclick="onSwitchLine()"><img
+                        <button class="switch-line" id="switch-focus-line"><img
                                 src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
                         <div class="line-moveing">
-                            <button class="move-line" id="line-up" onclick="onlineMove(this)">&#8593;</button>
-                            <button class="move-line" id="line-down" onclick="onlineMove(this)">&#8595;</button>
+                            <button class="move-line" id="line-up">&#8593;</button>
+                            <button class="move-line" id="line-down">&#8595;</button>
                         </div>
-                        <button class="add-text-line" onclick="onAddTextLine()"><img src="ICONS/add.png"
-                                alt=""></button>
-                        <button class="delete-text-line" onclick="onDeleteTextLines()"><img src="ICONS/trash.png"
-                                alt=""></button>
+                        <button class="add-text-line"><img src="ICONS/add.png" alt=""></button>
+                        <button class="delete-text-line"><img src="ICONS/trash.png" alt=""></button>
                     </section>
+
                     <section class="meme-design ">
                         <div class="line1 flex space-around">
+                            <button class="font-size-down" value="-"> <img src="ICONS/decrease font - icon.png"
+                                    alt=""></button>
+                            <button class="font-size-up" value="+"><img src="ICONS/increase font - icon.png"
+                                    alt=""></button>
 
-                            <button class="font-size-down" onclick="onFontSize(this)" value="-"> <img
-                                    src="ICONS/decrease font - icon.png" alt=""></button>
-                            <button class="font-size-up" onclick="onFontSize(this)" value="+"><img
-                                    src="ICONS/increase font - icon.png" alt=""></button>
-                            <button class="line-to-left" onclick="onTextAlign(this)" value="right"><img
-                                    src="ICONS/align-to-left.png" alt=""></button>
-                            <button class="line-to-center" onclick="onTextAlign(this)" value="center"><img
-                                    src="ICONS/center-text-alignment.png" alt=""></button>
-                            <button class="line-to-right" onclick="onTextAlign(this)" value="left"><img
-                                    src="ICONS/align-to-right.png" alt=""></button>
+                            <button class="line-to-left" value="right"><img src="ICONS/align-to-left.png"
+                                    alt=""></button>
+                            <button class="line-to-center" value="center"><img src="ICONS/center-text-alignment.png"
+                                    alt=""></button>
+                            <button class="line-to-right" value="left"><img src="ICONS/align-to-right.png"
+                                    alt=""></button>
                         </div>
                         <br />
                         <div class="line2 flex space-around">
-
-                            <select name="font" id="font" onchange="onChangeFont()">
+                            <select name="font" id="font">
                                 <option value="font">Font</option>
                                 <option value="Ariel">Ariel</option>
                                 <option value="impact">Impact</option>
                             </select>
+
                             <div class="color strokeColor">
                                 <img src="ICONS/text stroke.png" alt="">
-                                <input type="color" id="stroke-color" name="favcolor" value="#ff0001" onchange="onStrokeColor()">
+                                <input type="color" id="stroke-color" name="favcolor" value="#ff0001">
                             </div>
-                            <div class="color fontcolor">
 
+                            <div class="color fontcolor">
                                 <img src="ICONS/paint-board-and-brush.png" alt="">
-                                <input type="color" id="font-color" name="favcolor" value="#ff0001" onchange="onFontColor()">
+                                <input type="color" id="font-color" name="favcolor" value="#ff0001">
                             </div>
                         </div>
                     </section>
@@ -109,9 +108,9 @@
                     <!-- MEME-FUNCTIONS -->
                     <div>
                         <section class="meme-functions flex space-around">
-                            <a href="#" onclick="saveMeme()">Save</a>
-                            <a href="#" onclick="shareImg()">share</a>
-                            <a href="#" onclick="downloadImg(event,this)" download="my-img.jpg">Download</a>
+                            <a href="#" id="save-meme">Save</a>
+                            <a href="#" id="share-meme">share</a>
+                            <a href="#" id="download-meme" download="my-img.jpg">Download</a>
                         </section>
                         <div class="messege-modal"></div>
                     </div>
@@ -127,7 +126,7 @@
 
         <!-- PAGE ABOUT -->
         <div hidden class="about">
-            <h2> Welcome to Memes Me! <br /> In Memes Me we aloow you to take photos and edit them by yourself according to your mind. <br /> You have the option to add text lines in diffrent size fonts and colors, נeyond that you have the option to download
+            <h2> Welcome to Memes Me! <br /> In Memes Me we aloow you to take photos and edit them by yourself according to your mind. <br /> You have the option to add text lines in diffrent size fonts and colors, eyond that you have the option to download
                 the memes you make and even save them in your own gallery! <br /> Soon Memes me will open the option even to share your memes on Facebook, Twitter, Instagram and more... <br> Until then enjoy your staying and dont forget to make memes.
             </h2>
         </div>
@@ -140,7 +139,6 @@
         </div>
     </footer>
 
-    <script src="js/services/upload-service.js"></script>
     <script src="js/services/storage-services.js"></script>
     <script src="js/services/memes-service.js"></script>
     <script src="js/services/memes-gallery-service.js"></script>

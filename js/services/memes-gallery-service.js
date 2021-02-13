@@ -1,18 +1,18 @@
 'use strict';
-console.log('mem gallet service');
-
 
 const MEMESGALLERYKEY = 'savedMemes';
 const IDKEY = 'IdKEY';
 
-var gId = loadFromStorage(IDKEY);
-if (!gId) gId = 101;
+var gSavedMemes;
+var gId;
 
-var gSavedMemes = loadFromStorage(MEMESGALLERYKEY);
-if (!gSavedMemes) gSavedMemes = [];
+function loadMemesGallery() {
+    gId = loadFromStorage(IDKEY);
+    if (!gId) gId = 101;
 
-
-
+    gSavedMemes = loadFromStorage(MEMESGALLERYKEY);
+    if (!gSavedMemes) gSavedMemes = [];
+}
 
 function pushToMemesGallery(url) {
     let meme = {

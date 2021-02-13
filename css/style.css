@@ -264,6 +264,10 @@ img {
     .memes-container {
         flex-direction: column;
     }
+    .memes-container img {
+        width: 70px;
+        height: 70px;
+    }
     .canvas-container {
         width: 100%;
     }
@@ -277,12 +281,23 @@ img {
         width: 100%;
         padding-left: unset;
     }
+    .line-moveing .move-line {
+        height: 80px;
+        width: 60px;
+        font-size: 60px;
+    }
     .meme-text {
         justify-content: space-between;
     }
     .meme-design {
         margin-top: 10px;
         justify-content: unset;
+    }
+    #stroke-color {
+        height: 70px;
+    }
+    #font-color {
+        height: 70px;
     }
     .add-sticker {
         text-align: center;
@@ -297,5 +312,9 @@ img {
     #font {
         height: 50px;
         font-size: 2.5rem;
+    }
+    /* FOOTER */
+    .main-footer {
+        height: 50px;
     }
 }

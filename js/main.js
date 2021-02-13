@@ -13,14 +13,12 @@ var gCurrImgUrl;
 function init() {
     gFirstLineAdd = true;
     gMeme = createMeme();
-
-    // gMeme.selectedImgId;
-
     gCurrLineIdx = getCurrLineIdx();
     gImages = imagesForDisplay();
 
-    let elClassName = '';
+    addClicksAndTouch();
     onRenderGallery();
+    loadMemesGallery();
     createCanvas();
 }
 
@@ -98,6 +96,101 @@ function onRenderPhoto(el) {
     elGalleryPage.hidden = true;
     elAboutPage.hidden = true;
     elMemesPage.hidden = false;
+}
+
+function addClicksAndTouch() {
+    //PAGES
+    let elGalleryPage = document.querySelector('.gallery-page');
+    let elMemesPage = document.querySelector('.meme-page');
+    let elAboutPage = document.querySelector('.about-page');
+    //Page gallery
+    elGalleryPage.addEventListener('click', function() { onShowPage(this) });
+    elGalleryPage.addEventListener('touchend', function() { onShowPage(this) });
+    //Page meme
+    elMemesPage.addEventListener('click', function() { onShowPage(this) });
+    elMemesPage.addEventListener('touchend', function() { onShowPage(this) });
+    //Page about
+    elAboutPage.addEventListener('click', function() { onShowPage(this) });
+    elAboutPage.addEventListener('touchend', function() { onShowPage(this) });
+
+    // TEXT LINE INPUT
+    let elLineInput = document.getElementById('text-input');
+    elLineInput.addEventListener('keyup', onUpdateMemeText);
+
+    // FOCUS LINE BTN
+    let elFocuLine = document.getElementById('switch-focus-line');
+    elFocuLine.addEventListener('click', onSwitchLine);
+    elFocuLine.addEventListener('touchend', onSwitchLine);
+
+    //LINE MOVE UP|DOWN
+    let elLineUp = document.getElementById('line-up');
+    let elLineDown = document.getElementById('line-down');
+    //Line up
+    elLineUp.addEventListener('click', function() { onlineMove(this) });
+    elLineUp.addEventListener('touchend', function() { onlineMove(this) });
+    //Line down 
+    elLineDown.addEventListener('click', function() { onlineMove(this) });
+    elLineDown.addEventListener('touchend', function() { onlineMove(this) });
+
+    //ADD TEXT LINE
+    let elAddTextLine = document.querySelector('.add-text-line');
+    elAddTextLine.addEventListener('click', onAddTextLine);
+    elAddTextLine.addEventListener('touchend', onAddTextLine);
+
+    //DELETE TEXT LINE
+    let elDeleteTextLine = document.querySelector('.delete-text-line');
+    elDeleteTextLine.addEventListener('click', onDeleteTextLines);
+    elDeleteTextLine.addEventListener('touchend', onDeleteTextLines);
+
+    //FONT SIZE UP|DOWN
+    let elFontSizeUp = document.querySelector('.font-size-up');
+    let elFontSizeDown = document.querySelector('.font-size-down');
+    //Font size up
+    elFontSizeUp.addEventListener('click', function() { onFontSize(this) });
+    elFontSizeUp.addEventListener('touchend', function() { onFontSize(this) });
+    //Font size down
+    elFontSizeDown.addEventListener('click', function() { onFontSize(this) });
+    elFontSizeDown.addEventListener('touchend', function() { onFontSize(this) });
+
+    //TEXT ALIGN LEFT|CENTER|RIGHT
+    let elAlignleft = document.querySelector('.line-to-left');
+    let elAlignCenter = document.querySelector('.line-to-center');
+    let elAlignRight = document.querySelector('.line-to-right');
+    //Text align left
+    elAlignleft.addEventListener('click', function() { onTextAlign(this) });
+    elAlignleft.addEventListener('touchend', function() { onTextAlign(this) });
+    //Text align center
+    elAlignCenter.addEventListener('click', function() { onTextAlign(this) });
+    elAlignCenter.addEventListener('touchend', function() { onTextAlign(this) });
+    //Text align right
+    elAlignRight.addEventListener('click', function() { onTextAlign(this) });
+    elAlignRight.addEventListener('touchend', function() { onTextAlign(this) });
+
+    //CHANE FONT STYLE
+    let elChangeFont = document.getElementById('font');
+    elChangeFont.addEventListener('change', onChangeFont);
+
+    //CHANGE TEXT STROKE COLOR
+    let elChangeStrokeColor = document.getElementById('stroke-color');
+    elChangeStrokeColor.addEventListener('change', onStrokeColor);
+
+    //CHANGE TEXT FONT COLOR
+    let elChangeFontColor = document.getElementById('font-color');
+    elChangeFontColor.addEventListener('change', onFontColor);
+
+    //MEME FUNCTIONS
+    //Save meme
+    let elSaveMeme = document.getElementById('save-meme');
+    elSaveMeme.addEventListener('click', saveMeme);
+    elSaveMeme.addEventListener('touchend', saveMeme);
+    //Share meme
+    let elShareMeme = document.getElementById('share-meme');
+    elShareMeme.addEventListener('click', shareImg);
+    elShareMeme.addEventListener('touchend', shareImg);
+    //Download meme
+    let elDownloadMeme = document.getElementById('download-meme');
+    elDownloadMeme.addEventListener('click', function() { downloadImg(event, this) });
+    elDownloadMeme.addEventListener('touchend', function() { downloadImg(event, this) });
 }
 
 // CANVAS
