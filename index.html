@@ -20,6 +20,7 @@
                 <li class="nav meme-page pointer">memes</li>
                 <li class="nav about-page pointer">about</li>
             </ul>
+
             <button class="menu-btn">☰</button>
         </div>
     </header>
@@ -42,6 +43,7 @@
 
             <section class="image-content flex space-around wrap"></section>
         </div>
+
         <!-- MEMEPAGE -->
         <div hidden class="main-memes">
             <div class="memes-container flex">
@@ -57,29 +59,40 @@
 
                     <!-- TEXT-EDITING -->
                     <section class="meme-text flex space-around">
-                        <button class="switch-line" id="switch-focus-line"><img
-                                src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt=""></button>
+                        <button class="switch-line" id="switch-focus-line">
+                            <img src="ICONS/up-and-down-opposite-double-arrows-side-by-side.png" alt="">
+                        </button>
+
                         <div class="line-moveing">
                             <button class="move-line" id="line-up">&#8593;</button>
                             <button class="move-line" id="line-down">&#8595;</button>
                         </div>
+
                         <button class="add-text-line"><img src="ICONS/add.png" alt=""></button>
                         <button class="delete-text-line"><img src="ICONS/trash.png" alt=""></button>
                     </section>
-
+                    <!-- TEXT DESIGN -->
                     <section class="meme-design ">
                         <div class="line1 flex space-around">
-                            <button class="font-size-down" value="-"> <img src="ICONS/decrease font - icon.png"
-                                    alt=""></button>
-                            <button class="font-size-up" value="+"><img src="ICONS/increase font - icon.png"
-                                    alt=""></button>
+                            <button class="font-size-down" value="-">
+                                <img src="ICONS/decrease font - icon.png" alt="">
+                            </button>
 
-                            <button class="line-to-left" value="right"><img src="ICONS/align-to-left.png"
-                                    alt=""></button>
-                            <button class="line-to-center" value="center"><img src="ICONS/center-text-alignment.png"
-                                    alt=""></button>
-                            <button class="line-to-right" value="left"><img src="ICONS/align-to-right.png"
-                                    alt=""></button>
+                            <button class="font-size-up" value="+">
+                                <img src="ICONS/increase font - icon.png" alt="">
+                            </button>
+
+                            <button class="line-to-left" value="right">
+                                <img src="ICONS/align-to-left.png" alt="">
+                            </button>
+
+                            <button class="line-to-center" value="center">
+                                <img src="ICONS/center-text-alignment.png" alt="">
+                            </button>
+
+                            <button class="line-to-right" value="left">
+                                <img src="ICONS/align-to-right.png" alt="">
+                            </button>
                         </div>
                         <br />
                         <div class="line2 flex space-around">
@@ -113,9 +126,9 @@
                             <a href="#" id="share-meme">share</a>
                             <a href="#" id="download-meme" download="my-img.jpg">Download</a>
                         </section>
+
                         <div class="messege-modal"></div>
                     </div>
-
                 </div>
             </div>
         </div>

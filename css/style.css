@@ -243,6 +243,7 @@ button:focus {
         max-width: 760px;
         margin: 0 auto;
     }
+    /* HEADER */
     .main-header-content {
         justify-content: unset;
         display: grid;
@@ -253,6 +254,15 @@ button:focus {
     .logo {
         font-size: 2.1rem;
         margin-left: 20px;
+    }
+    .main-nav {
+        padding-left: 3em;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+    }
+    .nav {
+        font-size: 2.5rem;
     }
     /* GALLERY */
     .gallery {
@@ -266,15 +276,9 @@ button:focus {
         width: 40%;
         font-size: 2rem;
     }
-    .main-nav {
-        padding-left: 3em;
-        align-items: center;
-        height: 100%;
-        width: 100%;
-    }
-    .nav {
-        font-size: 2.5rem;
-        /* height: 100%; */
+    .image-content img {
+        height: 230px;
+        width: 230px;
     }
     /* MEMES */
     .memes-container {
@@ -309,10 +313,7 @@ button:focus {
         margin-top: 10px;
         justify-content: unset;
     }
-    #stroke-color {
-        height: 70px;
-    }
-    #font-color {
+    .color input {
         height: 70px;
     }
     .add-sticker {
@@ -336,10 +337,12 @@ button:focus {
 }
 
 @media (max-width: 720px) {
+    /* GENERAL */
     .main-container {
         margin: 0 auto;
         max-width: 620px;
     }
+    /* HEADER */
     .menu-btn {
         display: unset;
         margin: 0 auto;
@@ -365,22 +368,20 @@ button:focus {
         padding-left: 30%;
         margin-bottom: 60px;
     }
+    /* GALLERY */
+    #search-input {
+        width: 82%
+    }
     .search-keywords {
         display: none;
     }
-    .about h2 {
-        font-size: 2rem;
-    }
     .image-content div img {
-        height: 280px;
-        width: 280px;
-        margin-right: 50px;
+        height: 300px;
+        width: 300px;
     }
-    .search-content {
-        margin-right: 35px;
-    }
-    #search-input {
-        width: 82%
+    /* MEME-EDIT */
+    .meme-content {
+        padding-left: 10px;
     }
     .canvas-container {
         height: unset;
@@ -391,6 +392,7 @@ button:focus {
     }
     #text-input {
         margin-left: 5%;
+        font-size: 25px;
     }
     .meme-text button {
         padding: unset;
@@ -421,5 +423,34 @@ button:focus {
     .line1 button img {
         height: 40px;
         width: 40px;
+    }
+    .line2 {
+        width: 90%;
+    }
+    .color img {
+        width: 50px;
+        height: 50px;
+    }
+    .color input {
+        width: 40px;
+        height: 50px;
+    }
+    .meme-functions {
+        font-size: 30px;
+        width: 90%;
+    }
+    .meme-functions a {
+        padding: 5px;
+        width: fit-content;
+    }
+    /* MEME-GALLERY */
+    .save-meme-container img.meme {
+        margin-right: 40px;
+        width: 280px;
+        height: 280px;
+    }
+    /* ABOUT */
+    .about h2 {
+        font-size: 2rem;
     }
 }

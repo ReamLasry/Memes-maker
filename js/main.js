@@ -39,9 +39,10 @@ function onRenderMemes() {
     if (savedMemes.length === 0) strHTML = '<h1>No memes yet...</h1>';
     else strHTML = savedMemes.map(meme => {
         return ` 
-            <div class="img${meme.id}">
+            <div class="save-meme-container">
             <img class="delete-meme-img" id="${meme.id}" title="Delete meme" onclick="onDeleteMeme(this)" src="ICONS/trash.png" alt="">
-            <img  class="${meme.id}" src="${meme.url}" alt=""></div>`;
+            <img  class="meme ${meme.id}" src="${meme.url}" alt="">
+            </div>`;
     }).join('');
 
 
