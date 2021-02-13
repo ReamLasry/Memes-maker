@@ -129,14 +129,31 @@ function addClicksAndTouch() {
     elAboutPage.addEventListener('click', function() { onShowPage(this) });
     elAboutPage.addEventListener('touchend', function() { onShowPage(this) });
 
-    //MENUE BUTTON 
+    // MENUE BUTTON 
     let elMenueBtn = document.querySelector('.menu-btn');
     elMenueBtn.addEventListener('touchend', onToggleMenu);
 
-    //TEXT KEYWORD INPUT
+    // TEXT KEYWORD INPUT
     let elKeyWordInput = document.getElementById('search-input');
     elKeyWordInput.addEventListener('keyup', function() { onSearchKeyWord(this) });
 
+    // WORDS KEYWORD TO INPUT
+    let elKeyWord1 = document.querySelector('.keyWord1');
+    let elKeyWord2 = document.querySelector('.keyWord2');
+    let elKeyWord3 = document.querySelector('.keyWord3');
+    let elKeyWord4 = document.querySelector('.keyWord4');
+    // KeyWord1
+    elKeyWord1.addEventListener('click', function() { searchByThisWord(this) });
+    elKeyWord1.addEventListener('touchend', function() { searchByThisWord(this) });
+    // KeyWord2    
+    elKeyWord2.addEventListener('click', function() { searchByThisWord(this) });
+    elKeyWord2.addEventListener('touchend', function() { searchByThisWord(this) });
+    // KeyWord3
+    elKeyWord3.addEventListener('click', function() { searchByThisWord(this) });
+    elKeyWord3.addEventListener('touchend', function() { searchByThisWord(this) });
+    // KeyWord4
+    elKeyWord4.addEventListener('click', function() { searchByThisWord(this) });
+    elKeyWord4.addEventListener('touchend', function() { searchByThisWord(this) });
 
     // TEXT LINE INPUT
     let elLineInput = document.getElementById('text-input');
@@ -240,6 +257,15 @@ function onSearchKeyWord(el) {
 
     renderKeyWordGallery(searchPhotos);
     if (searchKey === '') onRenderGallery();
+}
+
+function searchByThisWord(el) {
+    let elSearchInput = document.getElementById('search-input');
+    elSearchInput.value = el.innerText;
+
+    let searchKey = elSearchInput.value.toLowerCase();
+    let searchPhotos = getKeyWordPicturs(searchKey);
+    renderKeyWordGallery(searchPhotos);
 }
 
 // CANVAS
