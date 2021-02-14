@@ -7,17 +7,17 @@ var gMeme;
 var gFirstLineAdd;
 var gCurrLineIdx;
 var gCurrImgUrl;
-var gOpenMenue;
+var gOpenMenu;
 
 
 function init() {
-    gOpenMenue = false;
+    gOpenMenu = false;
     gFirstLineAdd = true;
     gMeme = createMeme();
     gCurrLineIdx = getCurrLineIdx();
     gImages = imagesForDisplay();
 
-    addClicksAndTouch();
+    addClicksAndChanges();
     onRenderGallery();
     loadMemesGallery();
     createCanvas();
@@ -43,13 +43,14 @@ function onRenderMemes() {
     document.querySelector('.saved-memes-content').innerHTML = strHTML;
 }
 
-function onShowPage(el) {
+function onShowPage(ev) {
+
     let elGalleryPage = document.querySelector('.gallery');
     let elSavedMemesPage = document.querySelector('.saved-memes')
     let elMemesPage = document.querySelector('.main-memes');
     let elAboutPage = document.querySelector('.about');
 
-    switch (el.innerText) {
+    switch (ev.target.innerText) {
         case 'gallery'.toUpperCase():
             elMemesPage.hidden = true;
             elSavedMemesPage.hidden = true;
@@ -73,21 +74,13 @@ function onShowPage(el) {
 
     let elNavBar = document.querySelector('.main-nav');
     elNavBar.classList.remove('menu-open');
-    gOpenMenue = false;
+    gOpenMenu = false;
 }
 
 function onToggleMenu() {
     let elNavBar = document.querySelector('.main-nav');
-    switch (gOpenMenue) {
-        case false:
-            elNavBar.classList.add('menu-open');
-            gOpenMenue = true;
-            break;
-        case true:
-            elNavBar.classList.remove('menu-open');
-            gOpenMenue = false;
-            break;
-    }
+    elNavBar.classList.toggle('menu-open');
+    gOpenMenu = !gOpenMenu;
 }
 
 function onDeleteMeme(el) {
@@ -101,63 +94,30 @@ function onRenderPhoto(el) {
     changeSelectedPohto(imageId);
 
     gCurrImgUrl = gImages[imageId - 1].url;
-    drawImg(gCurrImgUrl);
+    renderCanvas();
 
-    let elGalleryPage = document.querySelector('.gallery');
-    let elSavedMemesPage = document.querySelector('.saved-memes')
-    let elMemesPage = document.querySelector('.main-memes');
-    let elAboutPage = document.querySelector('.about');
-
-    elSavedMemesPage.hidden = true
-    elGalleryPage.hidden = true;
-    elAboutPage.hidden = true;
-    elMemesPage.hidden = false;
+    document.querySelector('.saved-memes').hidden = true;
+    document.querySelector('.gallery').hidden = true;
+    document.querySelector('.about').hidden = true;
+    document.querySelector('.main-memes').hidden = false;
 }
 
-function addClicksAndTouch() {
+function addClicksAndChanges() {
     //PAGES
-    let elGalleryPage = document.querySelector('.gallery-page');
-    let elMemesPage = document.querySelector('.meme-page');
-    let elAboutPage = document.querySelector('.about-page');
-    //Page gallery
-    elGalleryPage.addEventListener('click', function() { onShowPage(this) });
-    elGalleryPage.addEventListener('touchend', function() { onShowPage(this) });
-    //Page meme
-    elMemesPage.addEventListener('click', function() { onShowPage(this) });
-    elMemesPage.addEventListener('touchend', function() { onShowPage(this) });
-    //Page about
-    elAboutPage.addEventListener('click', function() { onShowPage(this) });
-    elAboutPage.addEventListener('touchend', function() { onShowPage(this) });
+    let elMainNav = document.querySelector('.main-nav');
+    elMainNav.onclick = () => onShowPage(event);
 
     // MENUE BUTTON 
     let elMenueBtn = document.querySelector('.menu-btn');
-    elMenueBtn.addEventListener('touchend', onToggleMenu);
+    elMenueBtn.onclick = () => onToggleMenu();
 
     // TEXT KEYWORD INPUT
     let elKeyWordInput = document.getElementById('search-input');
     elKeyWordInput.addEventListener('keyup', function() { onSearchKeyWord(this) });
 
     // WORDS KEYWORD TO INPUT
-    let elKeyWord1 = document.querySelector('.keyWord1');
-    let elKeyWord2 = document.querySelector('.keyWord2');
-    let elKeyWord3 = document.querySelector('.keyWord3');
-    let elKeyWord4 = document.querySelector('.keyWord4');
-    let elKeyWord5 = document.querySelector('.keyWord5');
-    // KeyWord1
-    elKeyWord1.addEventListener('click', function() { searchByThisWord(this) });
-    elKeyWord1.addEventListener('touchend', function() { searchByThisWord(this) });
-    // KeyWord2    
-    elKeyWord2.addEventListener('click', function() { searchByThisWord(this) });
-    elKeyWord2.addEventListener('touchend', function() { searchByThisWord(this) });
-    // KeyWord3
-    elKeyWord3.addEventListener('click', function() { searchByThisWord(this) });
-    elKeyWord3.addEventListener('touchend', function() { searchByThisWord(this) });
-    // KeyWord4
-    elKeyWord4.addEventListener('click', function() { searchByThisWord(this) });
-    elKeyWord4.addEventListener('touchend', function() { searchByThisWord(this) });
-    // KeyWord5
-    elKeyWord5.addEventListener('click', function() { searchByThisWord(this) });
-    elKeyWord5.addEventListener('touchend', function() { searchByThisWord(this) });
+    let elKeyWords = document.querySelector('.search-keywords');
+    elKeyWords.onclick = () => searchByThisWord(event);
 
     // TEXT LINE INPUT
     let elLineInput = document.getElementById('text-input');
@@ -165,38 +125,31 @@ function addClicksAndTouch() {
 
     // FOCUS LINE BTN
     let elFocuLine = document.getElementById('switch-focus-line');
-    elFocuLine.addEventListener('click', onSwitchLine);
-    elFocuLine.addEventListener('touchend', onSwitchLine);
+    elFocuLine.onclick = () => onSwitchLine();
 
     //LINE MOVE UP|DOWN
     let elLineUp = document.getElementById('line-up');
     let elLineDown = document.getElementById('line-down');
     //Line up
     elLineUp.addEventListener('click', function() { onlineMove(this) });
-    elLineUp.addEventListener('touchend', function() { onlineMove(this) });
     //Line down 
     elLineDown.addEventListener('click', function() { onlineMove(this) });
-    elLineDown.addEventListener('touchend', function() { onlineMove(this) });
 
     //ADD TEXT LINE
     let elAddTextLine = document.querySelector('.add-text-line');
-    elAddTextLine.addEventListener('click', onAddTextLine);
-    elAddTextLine.addEventListener('touchend', onAddTextLine);
+    elAddTextLine.onclick = () => onAddTextLine();
 
     //DELETE TEXT LINE
     let elDeleteTextLine = document.querySelector('.delete-text-line');
-    elDeleteTextLine.addEventListener('click', onDeleteTextLines);
-    elDeleteTextLine.addEventListener('touchend', onDeleteTextLines);
+    elDeleteTextLine.onclick = () => onDeleteTextLines();
 
     //FONT SIZE UP|DOWN
     let elFontSizeUp = document.querySelector('.font-size-up');
     let elFontSizeDown = document.querySelector('.font-size-down');
     //Font size up
     elFontSizeUp.addEventListener('click', function() { onFontSize(this) });
-    elFontSizeUp.addEventListener('touchend', function() { onFontSize(this) });
     //Font size down
     elFontSizeDown.addEventListener('click', function() { onFontSize(this) });
-    elFontSizeDown.addEventListener('touchend', function() { onFontSize(this) });
 
     //TEXT ALIGN LEFT|CENTER|RIGHT
     let elAlignleft = document.querySelector('.line-to-left');
@@ -204,13 +157,10 @@ function addClicksAndTouch() {
     let elAlignRight = document.querySelector('.line-to-right');
     //Text align left
     elAlignleft.addEventListener('click', function() { onTextAlign(this) });
-    elAlignleft.addEventListener('touchend', function() { onTextAlign(this) });
     //Text align center
     elAlignCenter.addEventListener('click', function() { onTextAlign(this) });
-    elAlignCenter.addEventListener('touchend', function() { onTextAlign(this) });
     //Text align right
     elAlignRight.addEventListener('click', function() { onTextAlign(this) });
-    elAlignRight.addEventListener('touchend', function() { onTextAlign(this) });
 
     //CHANE FONT STYLE
     let elChangeFont = document.getElementById('font');
@@ -227,16 +177,13 @@ function addClicksAndTouch() {
     //MEME FUNCTIONS
     //Save meme
     let elSaveMeme = document.getElementById('save-meme');
-    elSaveMeme.addEventListener('click', saveMeme);
-    elSaveMeme.addEventListener('touchend', saveMeme);
+    elSaveMeme.onclick = () => saveMeme();
     //Share meme
     let elShareMeme = document.getElementById('share-meme');
-    elShareMeme.addEventListener('click', shareImg);
-    elShareMeme.addEventListener('touchend', shareImg);
+    elShareMeme.onclick = () => shareImg();
     //Download meme
     let elDownloadMeme = document.getElementById('download-meme');
     elDownloadMeme.addEventListener('click', function() { downloadImg(event, this) });
-    elDownloadMeme.addEventListener('touchend', function() { downloadImg(event, this) });
 
 }
 
@@ -249,6 +196,7 @@ function onRenderGallery() {
 }
 
 function renderKeyWordGallery(photos) {
+    // if(!photos) photos=gImages
     let strHTML = photos.map(image => {
         return `<div class="img${image.id}"><img  class="${image.id}" src="image/${image.id}.jpg" alt="" onclick="onRenderPhoto(this)"></div>`;
     }).join('');
@@ -256,16 +204,18 @@ function renderKeyWordGallery(photos) {
 }
 
 function onSearchKeyWord(el) {
-    let searchKey = el.value;
+    let searchKey = el.value.toLowerCase();
     let searchPhotos = getKeyWordPicturs(searchKey);
 
     renderKeyWordGallery(searchPhotos);
     if (searchKey === '') onRenderGallery();
 }
 
-function searchByThisWord(el) {
+function searchByThisWord(ev) {
+    let elInnerTxt = ev.target.innerText
+
     let elSearchInput = document.getElementById('search-input');
-    elSearchInput.value = el.innerText;
+    elSearchInput.value = elInnerTxt;
 
     let searchKey = elSearchInput.value.toLowerCase();
     let searchPhotos = getKeyWordPicturs(searchKey);
@@ -276,7 +226,6 @@ function searchByThisWord(el) {
 function createCanvas() {
     gElCanvas = document.querySelector('.canvas-content');
     gCtx = gElCanvas.getContext('2d');
-    drawImg(gCurrImgUrl);
 }
 
 function renderCanvas() {

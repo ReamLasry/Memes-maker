@@ -79,7 +79,7 @@ function deleteTextLines() {
 
 
     meme.lines = [{
-        // FIRSTLINE AFTER DELTE LINES
+        // FIRSTLINE AFTER DELETE LINES
         txt: '',
         size: 20,
         align: 'center',
